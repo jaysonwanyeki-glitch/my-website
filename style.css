@@ -1,7 +1,10 @@
+/* ==============================
+   GLOBAL STYLES
+============================== */
 :root {
-  --primary-color: #1E90FF; /* Blue */
+  --primary-color: #1E90FF; /* Bright Blue */
   --secondary-color: #ffffff; /* White */
-  --accent-color: #ffffff;
+  --accent-color: #0b3d91; /* Darker Blue */
   --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   --transition-speed: 0.3s;
 }
@@ -15,29 +18,30 @@
 body {
   font-family: var(--font-family);
   background-color: var(--secondary-color);
-  color: var(--primary-color);
+  color: #333;
   line-height: 1.6;
   overflow-x: hidden;
 }
 
-/* HEADER */
+/* ==============================
+   HEADER
+============================== */
 header {
-  position: fixed;
-  top: -100px;
-  left: 0;
-  width: 100%;
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
   padding: 15px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 100;
-  transition: top var(--transition-speed);
-}
-body:hover header,
-header:hover {
+  position: sticky;
   top: 0;
+  z-index: 100;
+  border-bottom: 1px solid #ddd;
+  transition: top 0.3s;
+}
+
+header:hover {
+  top: 0; /* Can be hidden initially via JS if you want hover effect */
 }
 
 header h1 {
@@ -46,7 +50,7 @@ header h1 {
 }
 
 nav a {
-  color: var(--secondary-color);
+  color: var(--primary-color);
   margin-left: 20px;
   text-decoration: none;
   font-weight: 500;
@@ -57,233 +61,10 @@ nav a:hover {
   color: var(--accent-color);
 }
 
-/* HERO */
+/* ==============================
+   HERO SECTION
+============================== */
 .hero {
-  min-height: 90vh;
+  height: 80vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background: linear-gradient(135deg, var(--primary-color), #4da6ff);
-  color: var(--secondary-color);
-  padding: 0 20px;
-  gap: 20px;
-}
-
-.hero h2 {
-  font-size: 3rem;
-  font-weight: bold;
-  text-shadow: 0 3px 10px rgba(0,0,0,0.2);
-}
-
-.hero p {
-  font-size: 1.3rem;
-  max-width: 700px;
-  margin: auto;
-}
-
-.hero button {
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
-  border: none;
-  padding: 16px 35px;
-  font-size: 1.2rem;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: transform var(--transition-speed), background-color var(--transition-speed);
-}
-
-.hero button:hover {
-  transform: scale(1.1);
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
-}
-
-/* SERVICE CARDS */
-.service-grid {
-  display: flex;
-  gap: 25px;
-  overflow-x: auto;
-  padding: 40px 20px;
-  scroll-behavior: smooth;
-}
-
-.service-card {
-  flex: 0 0 250px;
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
-  padding: 30px 20px;
-  border-radius: 14px;
-  text-align: center;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.service-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-}
-
-.service-icon {
-  font-size: 3rem;
-  margin-bottom: 15px;
-}
-
-/* TESTIMONIALS */
-.testimonials-grid {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  padding: 40px 20px;
-  scroll-snap-type: x mandatory;
-}
-
-.testimonial-card {
-  flex: 0 0 300px;
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
-  padding: 25px 20px;
-  border-radius: 14px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-  text-align: center;
-  scroll-snap-align: start;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.testimonial-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-}
-
-.testimonial-photo {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  margin-bottom: 10px;
-}
-
-.testimonial-text {
-  font-style: italic;
-  margin-bottom: 15px;
-}
-
-.testimonial-card h4 {
-  margin-bottom: 5px;
-  color: var(--primary-color);
-}
-
-/* FORM */
-form {
-  max-width: 500px;
-  margin: 50px auto;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
-
-form input,
-form textarea {
-  width: 100%;
-  padding: 12px 15px;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-}
-
-form input:focus,
-form textarea:focus {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 5px var(--primary-color);
-  outline: none;
-}
-
-form button {
-  width: 100%;
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
-  padding: 15px;
-  border-radius: 8px;
-  cursor: pointer;
-  border: none;
-}
-
-form button:hover {
-  transform: scale(1.05);
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
-}
-
-/* GOOGLE MAP */
-.map-container {
-  max-width: 1100px;
-  margin: 40px auto;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
-
-/* FOOTER */
-footer {
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
-  text-align: center;
-  padding: 25px 10px;
-}
-
-/* FLOATING WHATSAPP */
-.whatsapp-float {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: var(--primary-color);
-  color: #fff;
-  padding: 15px 20px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: bold;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  transition: transform 0.3s ease;
-  z-index: 200;
-}
-.whatsapp-float:hover {
-  transform: scale(1.1);
-}
-
-/* DARK MODE */
-body.dark-mode {
-  background-color: #1E1E1E;
-  color: #ffffff;
-}
-body.dark-mode .service-card,
-body.dark-mode .testimonial-card,
-body.dark-mode form {
-  background-color: #2c2c2c;
-  color: #ffffff;
-}
-body.dark-mode .service-card h4,
-body.dark-mode .testimonial-card h4 {
-  color: #1E90FF;
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .hero h2 {
-    font-size: 2rem;
-  }
-  .hero p {
-    font-size: 1rem;
-  }
-  header {
-    flex-direction: column;
-    text-align: center;
-  }
-  nav a {
-    margin: 10px;
-  }
-  .service-grid,
-  .testimonials-grid {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-  }
-}
+ 
