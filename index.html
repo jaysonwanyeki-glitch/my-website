@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Swift Courier Services</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ==========================
+       HEADER / NAV
+       ========================== -->
+  <header>
+    <h1>Swift Courier</h1>
+    <nav>
+      <a href="#hero">Home</a>
+      <a href="#form-section">Place Order</a>
+      <a href="#contact">Contact</a>
+      <button id="darkModeToggle">🌙 Dark Mode</button>
+    </nav>
+  </header>
+
+  <!-- ==========================
+       HERO / LANDING
+       ========================== -->
+  <section class="hero" id="hero">
+    <h2>Fast & Reliable Delivery in Nairobi</h2>
+    <p>Send your packages today. Easy, fast, and tracked via WhatsApp.</p>
+    <a href="https://wa.me/254793676054" target="_blank">
+      <button>📱 Message Us on WhatsApp</button>
+    </a>
+  </section>
+
+  <!-- ==========================
+       DELIVERY FORM
+       ========================== -->
+  <section id="form-section">
+    <form id="deliveryForm">
+      <h2>Place a Delivery Request</h2>
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="text" id="phone" placeholder="Phone Number" required>
+      <input type="text" id="pickup" placeholder="Pickup Location" required>
+      <input type="text" id="dropoff" placeholder="Dropoff Location" required>
+      <textarea id="note" placeholder="Additional Notes"></textarea>
+      <button type="submit">Send Delivery Request</button>
+    </form>
+  </section>
+
+  <!-- ==========================
+       CONTACT / FOOTER
+       ========================== -->
+  <footer id="contact">
+    <p>📞 Call / WhatsApp: <a href="https://wa.me/254793676054" target="_blank">+254 793 676 054</a></p>
+    <p>&copy; 2026 Swift Courier Services</p>
+  </footer>
+
+  <!-- ==========================
+       SCRIPT
+       ========================== -->
+  <script src="script.js"></script>
+
+  <script>
+    // ==========================
+    // DARK MODE TOGGLE
+    // ==========================
+    const toggleBtn = document.getElementById('darkModeToggle');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+  </script>
+
+</body>
+</html>
