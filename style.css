@@ -1,164 +1,276 @@
-:root {
-  --blue: #1e90ff;
-  --blue-dark: #0b3d91;
-  --white: #ffffff;
-  --text: #333;
-}
-
-/* RESET */
+/* =========================
+   GLOBAL RESET
+========================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
-  font-family: "Segoe UI", sans-serif;
-  background: var(--white);
-  color: var(--text);
+  background: #ffffff;
+  color: #333;
   line-height: 1.6;
 }
 
-/* HEADER */
+/* =========================
+   HEADER & NAV
+========================= */
 header {
-  background: white;
-  border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: 0;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
   padding: 15px 30px;
+  z-index: 1000;
+}
+
+header h1 {
+  color: #0b5ed7;
+  font-size: 24px;
+}
+
+nav {
   display: flex;
-  justify-content: space-between;
+  gap: 15px;
   align-items: center;
+  margin-top: 10px;
 }
 
 nav a {
-  margin-left: 15px;
   text-decoration: none;
-  color: var(--blue);
+  color: #333;
   font-weight: 500;
 }
 
 nav a:hover {
-  color: var(--blue-dark);
+  color: #0b5ed7;
 }
 
 #darkModeToggle {
+  margin-left: auto;
   background: none;
   border: none;
-  font-size: 1.3rem;
+  font-size: 20px;
   cursor: pointer;
 }
 
-/* HERO */
+/* =========================
+   HERO SECTION
+========================= */
 .hero {
-  padding: 80px 20px;
+  padding: 60px 20px;
   text-align: center;
-  background: linear-gradient(to right, #f7fbff, #eaf3ff);
+  background: #f5f9ff;
 }
 
 .hero h2 {
-  font-size: 2.5rem;
-  color: var(--blue-dark);
-}
-
-.hero p {
-  max-width: 600px;
-  margin: 15px auto;
-}
-
-/* GRIDS */
-.service-grid,
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 25px;
-  padding: 50px;
-}
-
-/* CARDS */
-.service-card,
-.pricing-card {
-  background: white;
-  border: 1px solid #e1e1e1;
-  border-radius: 15px;
-  padding: 25px;
-  text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.service-card:hover,
-.pricing-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
-
-.service-icon {
-  font-size: 2.5rem;
-  margin-bottom: 15px;
-}
-
-.price {
-  font-size: 2rem;
-  color: var(--blue);
-  font-weight: bold;
-}
-
-/* LIST */
-ul {
-  list-style: none;
-  text-align: left;
-  margin-top: 15px;
-}
-
-ul li {
+  font-size: 32px;
+  color: #0b5ed7;
   margin-bottom: 10px;
 }
 
-ul li::before {
-  content: "✔ ";
-  color: var(--blue);
+.hero p {
+  max-width: 700px;
+  margin: auto;
+  color: #555;
 }
 
-/* FOOTER */
-footer {
+.hero-image {
+  width: 100%;
+  max-width: 600px;
+  margin-top: 25px;
+  border-radius: 10px;
+}
+
+/* =========================
+   CONTENT SECTIONS
+========================= */
+.content {
+  padding: 50px 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.content h3 {
+  color: #0b5ed7;
+  margin-bottom: 10px;
+}
+
+.content p {
+  margin-bottom: 20px;
+  color: #555;
+}
+
+/* =========================
+   SERVICE CARDS
+========================= */
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.service-card {
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  padding: 25px;
+  border-radius: 10px;
   text-align: center;
-  padding: 20px;
-  background: #f5f5f5;
-  margin-top: 40px;
+  transition: transform 0.2s ease;
 }
 
-/* WHATSAPP */
-.whatsapp-float {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #25d366;
-  color: white;
-  font-size: 1.5rem;
-  padding: 15px;
-  border-radius: 50%;
+.service-card:hover {
+  transform: translateY(-5px);
+}
+
+.service-card img {
+  width: 60px;
+  margin-bottom: 15px;
+}
+
+.service-card h4 {
+  color: #0b5ed7;
+  margin-bottom: 10px;
+}
+
+/* =========================
+   PRICING CARDS
+========================= */
+.pricing {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.price-card {
+  background: #ffffff;
+  border: 2px solid #0b5ed7;
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+}
+
+.price-card h4 {
+  color: #0b5ed7;
+  margin-bottom: 10px;
+}
+
+.price {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+/* =========================
+   FORMS
+========================= */
+form {
+  max-width: 600px;
+  margin: auto;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+button {
+  background: #0b5ed7;
+  color: #ffffff;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+button:hover {
+  background: #084298;
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+  background: #f5f9ff;
+  padding: 20px;
+  text-align: center;
+  margin-top: 50px;
+}
+
+footer a {
+  color: #0b5ed7;
   text-decoration: none;
 }
 
-/* DARK MODE */
-.dark-mode {
+/* =========================
+   DASHBOARD STYLES (ADDED)
+========================= */
+.dashboard {
+  padding: 30px;
+  background: #ffffff;
+}
+
+.dashboard-header {
+  background: #0b5ed7;
+  color: #ffffff;
+  padding: 20px;
+  text-align: center;
+}
+
+.dashboard table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.dashboard th,
+.dashboard td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+.dashboard th {
+  background: #0b5ed7;
+  color: #ffffff;
+}
+
+.dashboard button {
+  background: #0b5ed7;
+  color: #ffffff;
+  border: none;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* =========================
+   DARK MODE
+========================= */
+body.dark {
   background: #121212;
-  color: #eee;
+  color: #f1f1f1;
 }
 
-.dark-mode header {
-  background: #1c1c1c;
-  border-bottom: 1px solid #333;
-}
-
-.dark-mode .hero {
-  background: #1a1a1a;
-}
-
-.dark-mode .service-card,
-.dark-mode .pricing-card {
+body.dark header,
+body.dark footer,
+body.dark .hero,
+body.dark .content,
+body.dark .service-card,
+body.dark .price-card,
+body.dark .dashboard {
   background: #1e1e1e;
-  border-color: #333;
 }
 
-.dark-mode footer {
-  background: #1c1c1c;
+body.dark nav a {
+  color: #f1f1f1;
+}
+
+body.dark .dashboard th {
+  background: #084298;
 }
