@@ -1,111 +1,142 @@
-let map, directionsService, directionsRenderer;
+/* ============================
+   DARK MODE TOGGLE (BULB)
+============================ */
+const darkToggle = document.getElementById("darkModeToggle");
 
-document.addEventListener("DOMContentLoaded", () => {
-  const toggle = document.getElementById("darkModeToggle");
+if (darkToggle) {
+  darkToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
 
-  if (toggle) {
-    if (localStorage.getItem("darkMode") === "on") {
-      document.body.classList.add("dark-mode");
-      toggle.textContent = "🌙";
+    // Save preference
+    if (document.body.classList.contains("dark")) {
+      localStorage.setItem("theme", "dark");
+    } else {
+      localStorage.setItem("theme", "light");
     }
-
-    toggle.addEventListener("click", () => {
-      document.body.classList.toggle("dark-mode");
-      const dark = document.body.classList.contains("dark-mode");
-      toggle.textContent = dark ? "🌙" : "💡";
-      localStorage.setItem("darkMode", dark ? "on" : "off");
-    });
-  }
-});
-
-function initMap() {
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: -1.286389, lng: 36.817223 }, // Nairobi
-    zoom: 12,
   });
-
-  directionsService = new google.maps.DirectionsService();
-  directionsRenderer = new google.maps.DirectionsRenderer();
-  directionsRenderer.setMap(map);
-
-  const pickup = new google.maps.places.Autocomplete(
-    document.getElementById("pickup")
-  );
-  const delivery = new google.maps.places.Autocomplete(
-    document.getElementById("delivery")
-  );
-
-  pickup.addListener("place_changed", calculateRoute);
-  delivery.addListener("place_changed", calculateRoute);
 }
 
-function calculateRoute() {
-  const pickup = document.getElementById("pickup").value;
-  const delivery = document.getElementById("delivery").value;
+// Load saved theme
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark");
+}
 
-  if (!pickup || !delivery) return;
+/* ============================
+   ORDER FORM HANDLING
+============================ */
+const orderForm = document.getElementById("orderForm");
 
-  directionsService.route(
-    {
-      origin: pickup,
-      destination: delivery,
-      travelMode: "DRIVING",
-    },
-    (result, status) => {
-      if (status === "OK") {
-        directionsRenderer.setDirections(result);
+if (orderForm) {
+  orderForm.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-        const distanceMeters =
-          result.routes[0].legs[0].distance.value;
-        const distanceKm = (distanceMeters / 1000).toFixed(1);
+    // Get form values
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const pickup = document.getElementById("pickup").value.trim();
+    const delivery = document.getElementById("delivery").value.trim();
+    const distance = document.getElementById("distance").value;
+    const notes = document.getElementById("notes").value.trim();
 
-        document.getElementById("distance").textContent =
-          distanceKm + " km";
-
-        let price = 150;
-        if (distanceKm > 3 && distanceKm <= 10) price = 350;
-        if (distanceKm > 10) price = 500;
-
-        document.getElementById("price").textContent =
-          "Ksh " + price;
-
-        document
-          .getElementById("orderForm")
-          .setAttribute("data-price", price);
-        document
-          .getElementById("orderForm")
-          .setAttribute("data-distance", distanceKm);
-      }
+    // Basic pricing logic
+    let price = 0;
+    if (distance <= 5) {
+      price = 150;
+    } else if (distance <= 10) {
+      price = 300;
+    } else {
+      price = 500;
     }
-  );
-}
 
-// SEND TO WHATSAPP
-document.addEventListener("submit", (e) => {
-  if (e.target.id !== "orderForm") return;
-  e.preventDefault();
+    /* ============================
+       SAVE ORDER FOR DASHBOARD
+    ============================ */
+    const orders = JSON.parse(localStorage.getItem("orders")) || [];
 
-  const name = e.target.name.value;
-  const phone = e.target.phone.value;
-  const pickup = document.getElementById("pickup").value;
-  const delivery = document.getElementById("delivery").value;
-  const distance = e.target.getAttribute("data-distance");
-  const price = e.target.getAttribute("data-price");
-  const notes = document.getElementById("notes").value;
+    orders.push({
+      id: Date.now(),
+      name: name,
+      phone: phone,
+      pickup: pickup,
+      delivery: delivery,
+      distance: distance,
+      price: price,
+      notes: notes,
+      status: "Pending"
+    });
 
-  const message = `
-📦 NEW DELIVERY ORDER
+    localStorage.setItem("orders", JSON.stringify(orders));
+
+    /* ============================
+       SEND TO WHATSAPP
+    ============================ */
+    const message = `
+🚚 *Swift Courier Order*
+
 👤 Name: ${name}
 📞 Phone: ${phone}
 📍 Pickup: ${pickup}
-🏁 Delivery: ${delivery}
+📦 Delivery: ${delivery}
 📏 Distance: ${distance} km
 💰 Price: Ksh ${price}
-📝 Notes: ${notes}
-`;
+📝 Notes: ${notes || "None"}
+    `;
 
-  window.open(
-    `https://wa.me/254793676054?text=${encodeURIComponent(message)}`,
-    "_blank"
-  );
-});
+    const whatsappNumber = "254793676054";
+    const whatsappURL =
+      "https://wa.me/" +
+      whatsappNumber +
+      "?text=" +
+      encodeURIComponent(message);
+
+    window.open(whatsappURL, "_blank");
+
+    // Reset form
+    orderForm.reset();
+    alert("Order sent successfully!");
+  });
+}
+
+/* ============================
+   DASHBOARD LOADER
+============================ */
+const ordersTable = document.getElementById("ordersTable");
+
+if (ordersTable) {
+  const orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+  orders.forEach((order) => {
+    const row = document.createElement("tr");
+
+    row.innerHTML = `
+      <td>${order.id}</td>
+      <td>${order.name}</td>
+      <td>${order.pickup}</td>
+      <td>${order.delivery}</td>
+      <td>Ksh ${order.price}</td>
+      <td>${order.status}</td>
+      <td>
+        <button onclick="markCompleted(${order.id})">Complete</button>
+      </td>
+    `;
+
+    ordersTable.appendChild(row);
+  });
+}
+
+/* ============================
+   UPDATE ORDER STATUS
+============================ */
+function markCompleted(id) {
+  let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+  orders = orders.map((order) => {
+    if (order.id === id) {
+      order.status = "Completed";
+    }
+    return order;
+  });
+
+  localStorage.setItem("orders", JSON.stringify(orders));
+  location.reload();
+}
