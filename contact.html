@@ -26,18 +26,19 @@
 </section>
 
 <section class="content">
-  <form id="orderForm">
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="tel" name="phone" placeholder="Phone Number" required>
-    <input type="text" name="address" placeholder="Delivery Address" required>
+<form id="orderForm">
+  <input type="text" name="name" placeholder="Your Name" required>
+  <input type="tel" name="phone" placeholder="Phone Number" required>
+  <input type="text" name="pickup" placeholder="Pickup Location" required>
+  <input type="text" name="delivery" placeholder="Delivery Location" required>
 
-    <!-- Hidden field for coordinates -->
-    <input type="hidden" name="location" id="location">
+  <!-- Optional hidden location -->
+  <input type="hidden" name="location" id="location">
+  <button type="button" id="getLocationBtn">📍 Use Current Location</button>
 
-    <button type="button" id="getLocationBtn">📍 Use My Current Location</button>
-    <textarea name="message" placeholder="Message / Delivery Details" rows="5"></textarea>
-    <button type="submit">Send Order</button>
-  </form>
+  <textarea name="message" placeholder="Additional Details" rows="4"></textarea>
+  <button type="submit">Send Order</button>
+</form>
 
   <div style="text-align:center; margin-top:30px;">
     <p>📞 WhatsApp: <a href="https://wa.me/254793676054">+254 793 676 054</a></p>
