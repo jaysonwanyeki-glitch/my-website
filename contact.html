@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Swift Courier</title>
+  <title>Contact | Swift Courier</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,107 +16,37 @@
     <a href="services.html">Services</a>
     <a href="pricing.html">Pricing</a>
     <a href="contact.html">Contact</a>
-    <button id="darkModeToggle">🌙 Dark Mode</button>
   </nav>
 </header>
 
 <section class="hero">
   <h2>Contact Us</h2>
-  <p>Fast responses. Reliable deliveries. Let’s get moving.</p>
-  <img src="images/contact.jpg" alt="Contact Swift Courier" class="hero-image">
+  <p>Reach out for bookings, inquiries, or quotes. Fast response guaranteed.</p>
 </section>
 
 <section class="content">
+  <form>
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Email Address" required>
+    <input type="tel" name="phone" placeholder="Phone Number" required>
+    <textarea name="message" placeholder="Message / Delivery Details" rows="5" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
 
-  <h3 style="text-align:center; margin-bottom:15px;">
-    🚀 Talk to Us Instantly
-  </h3>
-
-  <p style="text-align:center; margin-bottom:30px;">
-    WhatsApp is the fastest way to book a delivery.
-  </p>
-
-  <div style="text-align:center; margin-bottom:40px;">
-    <a href="https://wa.me/254793676054"
-       target="_blank"
-       style="
-         display:inline-block;
-         background-color:#25D366;
-         color:#ffffff;
-         padding:16px 30px;
-         border-radius:10px;
-         font-size:1.1rem;
-         font-weight:bold;
-         text-decoration:none;
-       ">
-      💬 Chat on WhatsApp
-    </a>
+  <div style="text-align:center; margin-top:30px;">
+    <p>📞 WhatsApp: <a href="https://wa.me/254793676054">+254 793 676 054</a></p>
+    <p>📍 We deliver across Nairobi</p>
+    <div class="map-container">
+      <iframe src="https://www.google.com/maps?q=Nairobi,+Kenya&output=embed" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
   </div>
-
-  <hr style="max-width:700px; margin:40px auto;">
-
-  <h3 style="text-align:center; margin-bottom:20px;">
-    📞 Contact Details
-  </h3>
-
-  <div style="max-width:600px; margin:auto; text-align:center; line-height:2;">
-    <p>
-      <strong>Phone:</strong><br>
-      <a href="tel:+254793676054">+254 793 676 054</a>
-    </p>
-
-    <p>
-      <strong>Email:</strong><br>
-      <a href="mailto:info@swiftcourier.co.ke">info@swiftcourier.co.ke</a>
-    </p>
-
-    <p>
-      <strong>Operating Hours:</strong><br>
-      Monday – Sunday | 8:00 AM – 8:00 PM
-    </p>
-  </div>
-
-  <hr style="max-width:700px; margin:40px auto;">
-
-  <h3 style="text-align:center; margin-bottom:20px;">
-    📍 Our Service Area
-  </h3>
-
-  <p style="text-align:center; max-width:700px; margin:0 auto 30px;">
-    We operate across Nairobi and surrounding areas,
-    offering fast and dependable delivery services.
-  </p>
-
-  <div class="map-container">
-    <iframe
-      src="https://www.google.com/maps?q=Nairobi,+Kenya&output=embed"
-      width="100%"
-      height="350"
-      style="border:0;"
-      loading="lazy"
-      allowfullscreen
-      referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
-  </div>
-
-  <p style="text-align:center; margin-top:25px;">
-    👉 <strong>Not sure if we cover your area?</strong><br>
-    <a href="https://wa.me/254793676054" target="_blank" style="font-weight:bold;">
-      Ask us on WhatsApp
-    </a>
-  </p>
-
 </section>
 
 <footer>
-  <p>
-    📞 WhatsApp:
-    <a href="https://wa.me/254793676054" target="_blank">
-      +254 793 676 054
-    </a>
-  </p>
   <p>&copy; 2026 Swift Courier Services</p>
 </footer>
+
+<a href="https://wa.me/254793676054" target="_blank" class="whatsapp-float">💬 WhatsApp</a>
 
 <script src="script.js"></script>
 </body>
