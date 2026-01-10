@@ -4,7 +4,7 @@
 :root {
   --primary-color: #1E90FF; /* Bright Blue */
   --secondary-color: #ffffff; /* White */
-  --accent-color: #0b3d91; /* Darker Blue */
+  --accent-color: #0b3d91; /* Dark Blue */
   --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   --transition-speed: 0.3s;
 }
@@ -37,6 +37,7 @@ header {
   top: 0;
   z-index: 100;
   border-bottom: 1px solid #ddd;
+  transition: top 0.3s;
 }
 
 header h1 {
@@ -57,7 +58,7 @@ nav a:hover {
 }
 
 /* ==============================
-   HERO SECTION
+   HERO
 ============================== */
 .hero {
   min-height: 70vh;
