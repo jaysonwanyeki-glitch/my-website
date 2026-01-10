@@ -1,14 +1,11 @@
-/* ==============================
-   GLOBAL STYLES
-============================== */
 :root {
-  --primary-color: #1E90FF; /* Bright Blue */
-  --secondary-color: #ffffff; /* White */
-  --accent-color: #0b3d91; /* Dark Blue */
-  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  --transition-speed: 0.3s;
+  --blue: #1e90ff;
+  --blue-dark: #0b3d91;
+  --white: #ffffff;
+  --text: #333;
 }
 
+/* RESET */
 * {
   margin: 0;
   padding: 0;
@@ -16,109 +13,79 @@
 }
 
 body {
-  font-family: var(--font-family);
-  background-color: var(--secondary-color);
-  color: #333;
+  font-family: "Segoe UI", sans-serif;
+  background: var(--white);
+  color: var(--text);
   line-height: 1.6;
-  overflow-x: hidden;
 }
 
-/* ==============================
-   HEADER
-============================== */
+/* HEADER */
 header {
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
-  padding: 15px 40px;
+  background: white;
+  border-bottom: 1px solid #ddd;
+  padding: 15px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  border-bottom: 1px solid #ddd;
-  transition: top 0.3s;
-}
-
-header h1 {
-  font-size: 1.8rem;
-  font-weight: bold;
 }
 
 nav a {
-  color: var(--primary-color);
-  margin-left: 20px;
+  margin-left: 15px;
   text-decoration: none;
+  color: var(--blue);
   font-weight: 500;
-  transition: color var(--transition-speed);
 }
 
 nav a:hover {
-  color: var(--accent-color);
+  color: var(--blue-dark);
 }
 
-/* ==============================
-   HERO
-============================== */
+#darkModeToggle {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+/* HERO */
 .hero {
-  min-height: 70vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  padding: 80px 20px;
   text-align: center;
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
-  padding: 0 20px;
+  background: linear-gradient(to right, #f7fbff, #eaf3ff);
 }
 
 .hero h2 {
   font-size: 2.5rem;
-  margin-bottom: 20px;
+  color: var(--blue-dark);
 }
 
 .hero p {
-  font-size: 1.2rem;
-  margin-bottom: 30px;
+  max-width: 600px;
+  margin: 15px auto;
 }
 
-.hero button {
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
-  border: none;
-  padding: 15px 30px;
-  font-size: 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform var(--transition-speed);
-}
-
-.hero button:hover {
-  transform: scale(1.05);
-  background-color: var(--accent-color);
-  color: var(--secondary-color);
-}
-
-/* ==============================
-   SERVICE CARDS
-============================== */
-.service-grid {
+/* GRIDS */
+.service-grid,
+.pricing-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 40px;
+  gap: 25px;
+  padding: 50px;
 }
 
-.service-card {
-  background-color: var(--secondary-color);
-  border: 1px solid #ddd;
-  border-radius: 12px;
+/* CARDS */
+.service-card,
+.pricing-card {
+  background: white;
+  border: 1px solid #e1e1e1;
+  border-radius: 15px;
   padding: 25px;
   text-align: center;
-  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.service-card:hover {
+.service-card:hover,
+.pricing-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
@@ -126,133 +93,72 @@ nav a:hover {
 .service-icon {
   font-size: 2.5rem;
   margin-bottom: 15px;
-  color: var(--primary-color);
 }
 
-/* ==============================
-   TABLES / PRICING
-============================== */
-table {
-  width: 100%;
-  max-width: 700px;
-  margin: 40px auto;
-  border-collapse: collapse;
+.price {
+  font-size: 2rem;
+  color: var(--blue);
+  font-weight: bold;
 }
 
-th, td {
-  border: 1px solid #ddd;
-  padding: 12px;
-  text-align: center;
+/* LIST */
+ul {
+  list-style: none;
+  text-align: left;
+  margin-top: 15px;
 }
 
-th {
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
+ul li {
+  margin-bottom: 10px;
 }
 
-td {
-  background-color: var(--secondary-color);
-  color: #333;
+ul li::before {
+  content: "✔ ";
+  color: var(--blue);
 }
 
-/* ==============================
-   FORM / CONTACT
-============================== */
-form {
-  max-width: 600px;
-  margin: 40px auto;
-  background-color: var(--secondary-color);
-  padding: 30px;
-  border-radius: 12px;
-  border: 1px solid #ddd;
-}
-
-form input, form textarea, form select {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-}
-
-form button {
-  width: 100%;
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
-  padding: 15px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: transform var(--transition-speed);
-}
-
-form button:hover {
-  transform: scale(1.05);
-  background-color: var(--accent-color);
-}
-
-/* ==============================
-   FOOTER
-============================== */
+/* FOOTER */
 footer {
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
   text-align: center;
   padding: 20px;
-  margin-top: 50px;
+  background: #f5f5f5;
+  margin-top: 40px;
 }
 
-/* ==============================
-   FLOATING WHATSAPP
-============================== */
+/* WHATSAPP */
 .whatsapp-float {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #25D366;
-  color: #fff;
+  background: #25d366;
+  color: white;
   font-size: 1.5rem;
   padding: 15px;
   border-radius: 50%;
-  text-align: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  z-index: 1000;
+  text-decoration: none;
 }
 
-/* ==============================
-   DARK MODE
-============================== */
+/* DARK MODE */
 .dark-mode {
-  background-color: #333;
-  color: #fff;
+  background: #121212;
+  color: #eee;
 }
 
 .dark-mode header {
-  background-color: #222;
+  background: #1c1c1c;
+  border-bottom: 1px solid #333;
 }
 
-.dark-mode .service-card {
-  background-color: #444;
-  color: #fff;
+.dark-mode .hero {
+  background: #1a1a1a;
 }
 
-.dark-mode table th {
-  background-color: #555;
+.dark-mode .service-card,
+.dark-mode .pricing-card {
+  background: #1e1e1e;
+  border-color: #333;
 }
 
-.dark-mode table td {
-  background-color: #666;
-  color: #fff;
-}
-
-/* ==============================
-   RESPONSIVE
-============================== */
-@media(max-width:768px){
-  .hero h2 { font-size: 2rem; }
-  .hero p { font-size: 1rem; }
-  header { flex-direction: column; }
-  nav a { margin: 10px 0; }
+.dark-mode footer {
+  background: #1c1c1c;
 }
