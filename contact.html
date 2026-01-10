@@ -17,6 +17,7 @@
     <a href="pricing.html">Pricing</a>
     <a href="contact.html">Contact</a>
   </nav>
+  <button id="darkModeToggle">🌙 Dark Mode</button>
 </header>
 
 <section class="hero">
@@ -25,12 +26,17 @@
 </section>
 
 <section class="content">
-  <form>
+  <form id="orderForm">
     <input type="text" name="name" placeholder="Your Name" required>
-    <input type="email" name="email" placeholder="Email Address" required>
     <input type="tel" name="phone" placeholder="Phone Number" required>
-    <textarea name="message" placeholder="Message / Delivery Details" rows="5" required></textarea>
-    <button type="submit">Send Message</button>
+    <input type="text" name="address" placeholder="Delivery Address" required>
+
+    <!-- Hidden field for coordinates -->
+    <input type="hidden" name="location" id="location">
+
+    <button type="button" id="getLocationBtn">📍 Use My Current Location</button>
+    <textarea name="message" placeholder="Message / Delivery Details" rows="5"></textarea>
+    <button type="submit">Send Order</button>
   </form>
 
   <div style="text-align:center; margin-top:30px;">
@@ -46,8 +52,61 @@
   <p>&copy; 2026 Swift Courier Services</p>
 </footer>
 
+<!-- Floating WhatsApp Button -->
 <a href="https://wa.me/254793676054" target="_blank" class="whatsapp-float">💬 WhatsApp</a>
 
-<script src="script.js"></script>
+<script>
+  // ===== Dark Mode Toggle =====
+  const darkModeToggle = document.getElementById("darkModeToggle");
+  darkModeToggle?.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+  });
+
+  // ===== Get User Location =====
+  const getLocationBtn = document.getElementById("getLocationBtn");
+  const locationInput = document.getElementById("location");
+
+  getLocationBtn?.addEventListener("click", () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const lat = position.coords.latitude;
+          const lng = position.coords.longitude;
+          locationInput.value = `https://www.google.com/maps?q=${lat},${lng}`;
+          alert("Location captured! You can now submit the order.");
+        },
+        (error) => {
+          alert("Unable to get location. Please enter your address manually.");
+        }
+      );
+    } else {
+      alert("Geolocation is not supported by your browser.");
+    }
+  });
+
+  // ===== Submit Form to WhatsApp =====
+  const orderForm = document.getElementById("orderForm");
+  orderForm?.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const name = orderForm.name.value;
+    const phone = orderForm.phone.value;
+    const address = orderForm.address.value;
+    const location = orderForm.location.value;
+    const message = orderForm.message.value;
+
+    const whatsappMessage = `📦 New Order!
+Name: ${name}
+Phone: ${phone}
+Address: ${address}
+Location: ${location}
+Details: ${message}`;
+
+    const whatsappURL = `https://wa.me/254793676054?text=${encodeURIComponent(whatsappMessage)}`;
+
+    window.open(whatsappURL, "_blank");
+  });
+</script>
+
 </body>
 </html>
