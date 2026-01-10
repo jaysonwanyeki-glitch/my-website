@@ -1,7 +1,7 @@
 :root {
   --primary-color: #1E90FF; /* Blue */
   --secondary-color: #ffffff; /* White */
-  --accent-color: #ffffff;   /* Hover text */
+  --accent-color: #ffffff;
   --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   --transition-speed: 0.3s;
 }
@@ -23,7 +23,7 @@ body {
 /* HEADER */
 header {
   position: fixed;
-  top: -100px; /* hidden */
+  top: -100px;
   left: 0;
   width: 100%;
   background-color: var(--primary-color);
@@ -100,7 +100,7 @@ nav a:hover {
   color: var(--secondary-color);
 }
 
-/* SERVICES */
+/* SERVICE CARDS */
 .service-grid {
   display: flex;
   gap: 25px;
@@ -154,6 +154,13 @@ nav a:hover {
 .testimonial-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.testimonial-photo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-bottom: 10px;
 }
 
 .testimonial-text {
@@ -224,6 +231,25 @@ footer {
   padding: 25px 10px;
 }
 
+/* FLOATING WHATSAPP */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 15px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+  z-index: 200;
+}
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+
 /* DARK MODE */
 body.dark-mode {
   background-color: #1E1E1E;
@@ -238,4 +264,26 @@ body.dark-mode form {
 body.dark-mode .service-card h4,
 body.dark-mode .testimonial-card h4 {
   color: #1E90FF;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero h2 {
+    font-size: 2rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+  nav a {
+    margin: 10px;
+  }
+  .service-grid,
+  .testimonials-grid {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
 }
