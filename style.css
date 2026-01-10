@@ -1,1 +1,198 @@
+/* ==============================
+   GLOBAL STYLES
+   ============================== */
+:root {
+  --primary-color: #722f37; /* Red wine */
+  --secondary-color: #ffffff; /* White */
+  --accent-color: #3a8edb; /* Little blue */
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --transition-speed: 0.3s;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ==============================
+   HEADER / NAVIGATION
+   ============================== */
+header {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+nav a {
+  color: var(--secondary-color);
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transition-speed);
+}
+
+nav a:hover {
+  color: var(--accent-color);
+}
+
+/* ==============================
+   HERO / LANDING SECTION
+   ============================== */
+.hero {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color) 0%,
+    var(--accent-color) 80%
+  );
+  color: var(--secondary-color);
+  padding: 0 20px;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+.hero h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  animation: slideUp 1.5s ease-out;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  animation: slideUp 2s ease-out;
+}
+
+.hero button {
+  background-color: var(--accent-color);
+  color: var(--secondary-color);
+  border: none;
+  padding: 15px 30px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform var(--transition-speed), background-color var(--transition-speed);
+}
+
+.hero button:hover {
+  transform: scale(1.1);
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+/* ==============================
+   DELIVERY FORM
+   ============================== */
+form {
+  max-width: 500px;
+  margin: 50px auto;
+  background-color: var(--secondary-color);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 2s ease-in;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+form input:focus,
+form textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 5px var(--accent-color);
+  outline: none;
+}
+
+form button {
+  width: 100%;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border: none;
+  padding: 15px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform var(--transition-speed), background-color var(--transition-speed);
+}
+
+form button:hover {
+  transform: scale(1.05);
+  background-color: var(--accent-color);
+}
+
+/* ==============================
+   FOOTER
+   ============================== */
+footer {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  text-align: center;
+  padding: 20px 10px;
+  margin-top: 50px;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+/* ==============================
+   ANIMATIONS
+   ============================== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ==============================
+   RESPONSIVE
+   ============================== */
+@media (max-width: 768px) {
+  .hero h2 {
+    font-size: 2rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+  nav a {
+    margin: 10px;
+  }
+}
 
