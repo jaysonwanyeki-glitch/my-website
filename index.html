@@ -16,33 +16,54 @@
     <a href="services.html">Services</a>
     <a href="pricing.html">Pricing</a>
     <a href="contact.html">Contact</a>
+    <button id="darkModeToggle">🌙 Dark Mode</button>
   </nav>
-  <button id="darkModeToggle">🌙 Dark Mode</button>
 </header>
 
 <section class="hero">
-  <h2>Fast & Reliable Courier Services</h2>
-  <p>We deliver packages across Nairobi safely, quickly, and professionally.</p>
-  <button onclick="window.location.href='contact.html'">Book a Delivery</button>
+  <h2>Fast & Reliable Courier Services in Nairobi</h2>
+  <p>Send packages quickly, safely, and stress-free. Pickup & delivery made simple.</p>
+  <a href="contact.html"><button>Place an Order</button></a>
 </section>
 
-<section class="content">
-  <h3 style="text-align:center; margin-bottom:30px;">📦 Our Services</h3>
+<section class="service-grid">
+  <div class="service-card">
+    <div class="service-icon">📦</div>
+    <h3>Parcel Delivery</h3>
+    <p>Send parcels anywhere within Nairobi quickly.</p>
+  </div>
+  <div class="service-card">
+    <div class="service-icon">🏢</div>
+    <h3>Business Deliveries</h3>
+    <p>Reliable delivery for shops, offices, and online sellers.</p>
+  </div>
+  <div class="service-card">
+    <div class="service-icon">⚡</div>
+    <h3>Express Delivery</h3>
+    <p>Urgent deliveries delivered on the same day.</p>
+  </div>
+  <div class="service-card">
+    <div class="service-icon">🛒</div>
+    <h3>Bulk Orders</h3>
+    <p>Efficient handling for large quantity deliveries.</p>
+  </div>
+</section>
+
+<section class="testimonials">
+  <h2 style="text-align:center; margin-bottom:20px;">What Our Clients Say</h2>
   <div class="service-grid">
-    <div class="service-card"><div class="service-icon">🏪</div><h4>Business Deliveries</h4><p>Same-day deliveries for shops & online stores.</p></div>
-    <div class="service-card"><div class="service-icon">⏱️</div><h4>Express Delivery</h4><p>Instant or scheduled pickup at your convenience.</p></div>
-    <div class="service-card"><div class="service-icon">💰</div><h4>Cash on Delivery</h4><p>Safe payments collected directly from your customers.</p></div>
-  </div>
-
-  <h3 style="text-align:center; margin-top:50px;">⭐ Testimonials</h3>
-  <div class="testimonials-grid">
-    <div class="testimonial-card"><p>“Swift Courier delivered my shop orders same day. Reliable and affordable.”</p><h4>— Mary W.</h4><small>Online Seller, Nairobi</small></div>
-    <div class="testimonial-card"><p>“Fast pickups, clear communication. My customers are happy.”</p><h4>— James O.</h4><small>Electronics Shop Owner</small></div>
-  </div>
-
-  <h3 style="text-align:center; margin-top:50px;">📍 Our Service Area</h3>
-  <div class="map-container">
-    <iframe src="https://www.google.com/maps?q=Nairobi,+Kenya&output=embed" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    <div class="service-card">
+      <p>"Swift Courier is always on time. My online shop deliveries are now hassle-free!"</p>
+      <strong>- Jane, Nairobi</strong>
+    </div>
+    <div class="service-card">
+      <p>"Professional and reliable. I trust them with all my business deliveries."</p>
+      <strong>- Kevin, SME Owner</strong>
+    </div>
+    <div class="service-card">
+      <p>"Quick and affordable. I recommend them to every small business."</p>
+      <strong>- Linda, Online Seller</strong>
+    </div>
   </div>
 </section>
 
@@ -51,7 +72,7 @@
   <p>&copy; 2026 Swift Courier Services</p>
 </footer>
 
-<a href="https://wa.me/254793676054" target="_blank" class="whatsapp-float">💬 WhatsApp</a>
+<a href="https://wa.me/254793676054" class="whatsapp-float">💬</a>
 
 <script src="script.js"></script>
 </body>
