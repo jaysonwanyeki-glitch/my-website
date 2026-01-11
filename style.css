@@ -274,3 +274,42 @@ body.dark nav a {
 body.dark .dashboard th {
   background: #084298;
 }
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.price-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.price-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(11,94,215,0.2);
+}
+
+.price-card .price {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #0b5ed7;
+  margin: 8px 0;
+}
+
+.price-card span {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.price-card.accent {
+  border: 2px solid #0b5ed7;
+}
