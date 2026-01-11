@@ -313,3 +313,59 @@ body.dark .dashboard th {
 .price-card.accent {
   border: 2px solid #0b5ed7;
 }
+
+.testimonials {
+  padding: 30px 20px;
+  text-align: center;
+  background: #f9fbff;
+}
+
+body.dark .testimonials {
+  background: #0f172a;
+}
+
+.testimonials h2 {
+  margin-bottom: 20px;
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.testimonial-card {
+  background: #ffffff;
+  padding: 14px;
+  border-radius: 10px;
+  box-shadow: 0 5px 12px rgba(0,0,0,0.08);
+  font-size: 0.9rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+body.dark .testimonial-card {
+  background: #1e293b;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 22px rgba(11,94,215,0.25);
+}
+
+.testimonial-card p {
+  margin-bottom: 8px;
+  font-style: italic;
+}
+
+.rating {
+  color: #fbbf24;
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.testimonial-card span {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
