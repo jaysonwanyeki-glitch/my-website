@@ -12,6 +12,7 @@ body {
   background: #ffffff;
   color: #333;
   line-height: 1.6;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* =========================
@@ -28,20 +29,21 @@ header {
 
 header h1 {
   color: #0b5ed7;
-  font-size: 24px;
+  font-size: 22px;
 }
 
 nav {
   display: flex;
   gap: 15px;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 nav a {
   text-decoration: none;
   color: #333;
   font-weight: 500;
+  font-size: 0.95rem;
 }
 
 nav a:hover {
@@ -57,110 +59,163 @@ nav a:hover {
 }
 
 /* =========================
-   HERO SECTION
+   HERO
 ========================= */
 .hero {
-  padding: 60px 20px;
+  padding: 50px 20px;
   text-align: center;
   background: #f5f9ff;
 }
 
 .hero h2 {
-  font-size: 32px;
+  font-size: 30px;
   color: #0b5ed7;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .hero p {
-  max-width: 700px;
+  max-width: 650px;
   margin: auto;
   color: #555;
-}
-
-.hero-image {
-  width: 100%;
-  max-width: 600px;
-  margin-top: 25px;
-  border-radius: 10px;
+  font-size: 0.95rem;
 }
 
 /* =========================
-   CONTENT SECTIONS
+   CONTENT
 ========================= */
 .content {
-  padding: 50px 20px;
+  padding: 45px 20px;
   max-width: 1100px;
   margin: auto;
 }
 
 .content h3 {
   color: #0b5ed7;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .content p {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   color: #555;
+  font-size: 0.95rem;
 }
 
 /* =========================
-   SERVICE CARDS
+   SERVICES
 ========================= */
 .services {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
 }
 
 .service-card {
   background: #ffffff;
   border: 1px solid #e5e5e5;
-  padding: 25px;
-  border-radius: 10px;
+  padding: 20px;
+  border-radius: 12px;
   text-align: center;
-  transition: transform 0.2s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .service-card:hover {
-  transform: translateY(-5px);
-}
-
-.service-card img {
-  width: 60px;
-  margin-bottom: 15px;
+  transform: translateY(-6px);
+  box-shadow: 0 10px 24px rgba(11,94,215,0.18);
 }
 
 .service-card h4 {
   color: #0b5ed7;
-  margin-bottom: 10px;
+  font-size: 1rem;
+  margin-bottom: 6px;
 }
 
 /* =========================
-   PRICING CARDS
+   PRICING (SMALL & ALIVE)
 ========================= */
-.pricing {
+.pricing-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  max-width: 900px;
+  margin: auto;
 }
 
 .price-card {
   background: #ffffff;
-  border: 2px solid #0b5ed7;
+  padding: 16px;
   border-radius: 12px;
-  padding: 30px;
   text-align: center;
+  border: 1.5px solid #e5e5e5;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.price-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 26px rgba(11,94,215,0.25);
+}
+
+.price-card.accent {
+  border: 2px solid #0b5ed7;
 }
 
 .price-card h4 {
+  font-size: 0.95rem;
   color: #0b5ed7;
-  margin-bottom: 10px;
 }
 
 .price {
-  font-size: 28px;
+  font-size: 1.3rem;
   font-weight: bold;
-  margin: 15px 0;
+  margin: 8px 0;
+  color: #0b5ed7;
+}
+
+.price-card span {
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+/* =========================
+   TESTIMONIALS (SMALL + RATING)
+========================= */
+.testimonials {
+  padding: 35px 20px;
+  background: #f9fbff;
+  text-align: center;
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 15px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.testimonial-card {
+  background: #ffffff;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 14px 28px rgba(11,94,215,0.3);
+}
+
+.rating {
+  color: #fbbf24;
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.testimonial-card span {
+  font-size: 0.8rem;
+  opacity: 0.75;
 }
 
 /* =========================
@@ -173,19 +228,19 @@ form {
 
 input, textarea, select {
   width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
+  padding: 11px;
+  margin-bottom: 14px;
   border-radius: 6px;
+  border: 1px solid #ccc;
 }
 
 button {
   background: #0b5ed7;
   color: #ffffff;
   border: none;
-  padding: 12px 20px;
-  cursor: pointer;
+  padding: 11px 18px;
   border-radius: 6px;
+  cursor: pointer;
 }
 
 button:hover {
@@ -193,60 +248,27 @@ button:hover {
 }
 
 /* =========================
-   FOOTER
-========================= */
-footer {
-  background: #f5f9ff;
-  padding: 20px;
-  text-align: center;
-  margin-top: 50px;
-}
-
-footer a {
-  color: #0b5ed7;
-  text-decoration: none;
-}
-
-/* =========================
-   DASHBOARD STYLES (ADDED)
+   DASHBOARD
 ========================= */
 .dashboard {
   padding: 30px;
   background: #ffffff;
 }
 
-.dashboard-header {
-  background: #0b5ed7;
-  color: #ffffff;
-  padding: 20px;
-  text-align: center;
-}
-
 .dashboard table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
 }
 
 .dashboard th,
 .dashboard td {
   border: 1px solid #ddd;
-  padding: 12px;
-  text-align: left;
+  padding: 10px;
 }
 
 .dashboard th {
   background: #0b5ed7;
   color: #ffffff;
-}
-
-.dashboard button {
-  background: #0b5ed7;
-  color: #ffffff;
-  border: none;
-  padding: 6px 10px;
-  cursor: pointer;
-  border-radius: 4px;
 }
 
 /* =========================
@@ -263,6 +285,7 @@ body.dark .hero,
 body.dark .content,
 body.dark .service-card,
 body.dark .price-card,
+body.dark .testimonial-card,
 body.dark .dashboard {
   background: #1e1e1e;
 }
@@ -271,101 +294,61 @@ body.dark nav a {
   color: #f1f1f1;
 }
 
-body.dark .dashboard th {
-  background: #084298;
-}
-
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 15px;
-  padding: 20px;
-  max-width: 900px;
-  margin: auto;
-}
-
-.price-card {
-  background: #fff;
-  border-radius: 10px;
-  padding: 15px;
+/* =========================
+   HOW IT WORKS (ADDED ONCE)
+========================= */
+.how-it-works {
+  padding: 40px 20px;
   text-align: center;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: linear-gradient(180deg, #ffffff, #f4f8ff);
 }
 
-.price-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(11,94,215,0.2);
-}
-
-.price-card .price {
-  font-size: 1.3rem;
-  font-weight: bold;
-  color: #0b5ed7;
-  margin: 8px 0;
-}
-
-.price-card span {
-  font-size: 0.85rem;
-  opacity: 0.8;
-}
-
-.price-card.accent {
-  border: 2px solid #0b5ed7;
-}
-
-.testimonials {
-  padding: 30px 20px;
-  text-align: center;
-  background: #f9fbff;
-}
-
-body.dark .testimonials {
+body.dark .how-it-works {
   background: #0f172a;
 }
 
-.testimonials h2 {
-  margin-bottom: 20px;
-}
-
-.testimonial-grid {
+.steps-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 18px;
   max-width: 900px;
   margin: auto;
 }
 
-.testimonial-card {
+.step-card {
   background: #ffffff;
-  padding: 14px;
-  border-radius: 10px;
-  box-shadow: 0 5px 12px rgba(0,0,0,0.08);
-  font-size: 0.9rem;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-body.dark .testimonial-card {
+body.dark .step-card {
   background: #1e293b;
 }
 
-.testimonial-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 22px rgba(11,94,215,0.25);
+.step-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(11,94,215,0.3);
 }
 
-.testimonial-card p {
-  margin-bottom: 8px;
-  font-style: italic;
+.step-icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  animation: float 3s ease-in-out infinite;
 }
 
-.rating {
-  color: #fbbf24;
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.step-card h3 {
   font-size: 1rem;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
 }
 
-.testimonial-card span {
-  font-size: 0.8rem;
-  opacity: 0.8;
+.step-card p {
+  font-size: 0.85rem;
+  opacity: 0.85;
 }
