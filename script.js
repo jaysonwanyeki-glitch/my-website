@@ -1,142 +1,58 @@
-/* ============================
-   DARK MODE TOGGLE (BULB)
-============================ */
-const darkToggle = document.getElementById("darkModeToggle");
+/* =========================
+   WAIT FOR PAGE TO LOAD
+========================= */
+document.addEventListener("DOMContentLoaded", () => {
 
-if (darkToggle) {
-  darkToggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark");
+  /* =========================
+     DARK MODE TOGGLE 💡
+  ========================= */
+  const toggle = document.getElementById("darkModeToggle");
 
-    // Save preference
-    if (document.body.classList.contains("dark")) {
-      localStorage.setItem("theme", "dark");
-    } else {
-      localStorage.setItem("theme", "light");
-    }
-  });
-}
+  if (toggle) {
+    toggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
 
-// Load saved theme
-if (localStorage.getItem("theme") === "dark") {
-  document.body.classList.add("dark");
-}
+      // Optional: remember mode
+      if (document.body.classList.contains("dark")) {
+        localStorage.setItem("theme", "dark");
+      } else {
+        localStorage.setItem("theme", "light");
+      }
+    });
+  }
 
-/* ============================
-   ORDER FORM HANDLING
-============================ */
-const orderForm = document.getElementById("orderForm");
+  // Load saved theme
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+  }
 
-if (orderForm) {
-  orderForm.addEventListener("submit", function (e) {
-    e.preventDefault();
+  /* =========================
+     SCROLL MICRO-ANIMATIONS
+  ========================= */
+  const animatedItems = document.querySelectorAll(".animate");
 
-    // Get form values
-    const name = document.getElementById("name").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const pickup = document.getElementById("pickup").value.trim();
-    const delivery = document.getElementById("delivery").value.trim();
-    const distance = document.getElementById("distance").value;
-    const notes = document.getElementById("notes").value.trim();
+  if (animatedItems.length > 0) {
 
-    // Basic pricing logic
-    let price = 0;
-    if (distance <= 5) {
-      price = 150;
-    } else if (distance <= 10) {
-      price = 300;
-    } else {
-      price = 500;
-    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+            observer.unobserve(entry.target); // animate once
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
 
-    /* ============================
-       SAVE ORDER FOR DASHBOARD
-    ============================ */
-    const orders = JSON.parse(localStorage.getItem("orders")) || [];
-
-    orders.push({
-      id: Date.now(),
-      name: name,
-      phone: phone,
-      pickup: pickup,
-      delivery: delivery,
-      distance: distance,
-      price: price,
-      notes: notes,
-      status: "Pending"
+    animatedItems.forEach(item => {
+      item.style.opacity = "0";
+      item.style.transform = "translateY(25px)";
+      item.style.transition = "all 0.6s ease";
+      observer.observe(item);
     });
 
-    localStorage.setItem("orders", JSON.stringify(orders));
+  }
 
-    /* ============================
-       SEND TO WHATSAPP
-    ============================ */
-    const message = `
-🚚 *Swift Courier Order*
-
-👤 Name: ${name}
-📞 Phone: ${phone}
-📍 Pickup: ${pickup}
-📦 Delivery: ${delivery}
-📏 Distance: ${distance} km
-💰 Price: Ksh ${price}
-📝 Notes: ${notes || "None"}
-    `;
-
-    const whatsappNumber = "254793676054";
-    const whatsappURL =
-      "https://wa.me/" +
-      whatsappNumber +
-      "?text=" +
-      encodeURIComponent(message);
-
-    window.open(whatsappURL, "_blank");
-
-    // Reset form
-    orderForm.reset();
-    alert("Order sent successfully!");
-  });
-}
-
-/* ============================
-   DASHBOARD LOADER
-============================ */
-const ordersTable = document.getElementById("ordersTable");
-
-if (ordersTable) {
-  const orders = JSON.parse(localStorage.getItem("orders")) || [];
-
-  orders.forEach((order) => {
-    const row = document.createElement("tr");
-
-    row.innerHTML = `
-      <td>${order.id}</td>
-      <td>${order.name}</td>
-      <td>${order.pickup}</td>
-      <td>${order.delivery}</td>
-      <td>Ksh ${order.price}</td>
-      <td>${order.status}</td>
-      <td>
-        <button onclick="markCompleted(${order.id})">Complete</button>
-      </td>
-    `;
-
-    ordersTable.appendChild(row);
-  });
-}
-
-/* ============================
-   UPDATE ORDER STATUS
-============================ */
-function markCompleted(id) {
-  let orders = JSON.parse(localStorage.getItem("orders")) || [];
-
-  orders = orders.map((order) => {
-    if (order.id === id) {
-      order.status = "Completed";
-    }
-    return order;
-  });
-
-  localStorage.setItem("orders", JSON.stringify(orders));
-  location.reload();
-}
+});
