@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Your Order - Swift Courier</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="hero">
+  <h2>Track Your Delivery</h2>
+  <p>Enter your tracking ID to see your delivery status in real-time.</p>
+</section>
+
+<section class="content">
+  <div class="tracking-search">
+    <input type="text" id="trackingInput" placeholder="Enter Tracking ID (e.g. SC-1718000000000)">
+    <button id="trackBtn" class="btn-primary">🔍 Track</button>
+  </div>
+
+  <div id="trackingResult" class="tracking-result" style="display:none;">
+    <div class="tracking-header">
+      <h3>Order <span id="trackOrderId"></span></h3>
+      <span id="trackStatus" class="status-badge"></span>
+    </div>
+
+    <div class="tracking-details">
+      <div class="detail-row">
+        <span class="detail-label">Customer</span>
+        <span id="trackName" class="detail-value"></span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Pickup</span>
+        <span id="trackPickup" class="detail-value"></span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Delivery</span>
+        <span id="trackDelivery" class="detail-value"></span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Service</span>
+        <span id="trackService" class="detail-value"></span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Price</span>
+        <span id="trackPrice" class="detail-value"></span>
+      </div>
+    </div>
+
+    <div class="tracking-timeline">
+      <h4>Delivery Progress</h4>
+      <div class="timeline">
+        <div class="timeline-step completed" id="step-booked">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <strong>Order Placed</strong>
+            <span id="trackDate"></span>
+          </div>
+        </div>
+        <div class="timeline-step" id="step-confirmed">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <strong>Confirmed</strong>
+            <span>Order confirmed by dispatch</span>
+          </div>
+        </div>
+        <div class="timeline-step" id="step-pickup">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <strong>Rider En Route to Pickup</strong>
+            <span>Rider dispatched to pickup location</span>
+          </div>
+        </div>
+        <div class="timeline-step" id="step-transit">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <strong>In Transit</strong>
+            <span>Package picked up, heading to delivery</span>
+          </div>
+        </div>
+        <div class="timeline-step" id="step-delivered">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <strong>Delivered</strong>
+            <span>Package delivered successfully</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tracking-actions">
+      <a id="trackWhatsApp" href="#" class="btn-whatsapp">💬 Contact About This Order</a>
+    </div>
+  </div>
+
+  <div id="trackingNotFound" class="tracking-not-found" style="display:none;">
+    <div class="not-found-icon">🔍</div>
+    <h3>Order Not Found</h3>
+    <p>We couldn't find an order with that tracking ID. Please check the ID and try again.</p>
+    <p class="not-found-help">Your tracking ID was sent via WhatsApp when you placed your order. It starts with <strong>SC-</strong></p>
+  </div>
+
+  <div class="tracking-info">
+    <h3>My Recent Orders</h3>
+    <div id="recentOrders" class="recent-orders"></div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<div id="whatsapp-float"></div>
+
+<script src="shared.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

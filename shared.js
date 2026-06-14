@@ -17,7 +17,8 @@ const NAV_LINKS = [
   { href: "about.html",    label: "About Us" },
   { href: "services.html", label: "Services" },
   { href: "pricing.html",  label: "Pricing" },
-  { href: "contact.html",  label: "Contact" },
+  { href: "contact.html",  label: "Book" },
+  { href: "tracking.html", label: "Track" },
 ];
 
 /* ---- helpers ---- */

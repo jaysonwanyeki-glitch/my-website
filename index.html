@@ -5,42 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Swift Courier</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
 <body>
 
 <div id="site-header"></div>
 
 <!-- HERO -->
-<section class="hero">
-  <h2>Fast & Reliable Courier Services in Nairobi</h2>
-  <p>Send packages quickly, safely, and stress-free. Pickup & delivery made simple.</p>
-  <a href="contact.html">
-    <button>Place an Order</button>
-  </a>
+<section class="hero hero-image" style="background-image: url('images/hero-delivery.jpg');">
+  <div class="hero-overlay">
+    <h2>Fast & Reliable Courier Services in Nairobi</h2>
+    <p>Send packages quickly, safely, and stress-free. Pickup & delivery made simple.</p>
+    <div class="hero-buttons">
+      <a href="contact.html"><button class="btn-primary">Book a Delivery</button></a>
+      <a href="tracking.html"><button class="btn-outline">Track Your Order</button></a>
+    </div>
+  </div>
 </section>
 
 <!-- SERVICES -->
 <section class="service-grid">
-  <div class="service-card">
-    <div class="service-icon">📦</div>
+  <div class="service-card animate">
+    <img src="images/parcel-delivery.jpg" alt="Parcel Delivery" class="service-img">
     <h3>Parcel Delivery</h3>
     <p>Fast and secure parcel delivery across Nairobi.</p>
   </div>
 
-  <div class="service-card">
-    <div class="service-icon">🏢</div>
+  <div class="service-card animate">
+    <img src="images/business-delivery.jpg" alt="Business Deliveries" class="service-img">
     <h3>Business Deliveries</h3>
     <p>Trusted delivery partner for shops and offices.</p>
   </div>
 
-  <div class="service-card">
-    <div class="service-icon">⚡</div>
+  <div class="service-card animate">
+    <img src="images/express-delivery.jpg" alt="Express Delivery" class="service-img">
     <h3>Express Delivery</h3>
     <p>Urgent same-day delivery when time matters.</p>
   </div>
 
-  <div class="service-card">
-    <div class="service-icon">🛒</div>
+  <div class="service-card animate">
+    <img src="images/bulk-orders.jpg" alt="Bulk Orders" class="service-img">
     <h3>Bulk Orders</h3>
     <p>Efficient handling of multiple deliveries.</p>
   </div>
@@ -51,37 +55,78 @@
   <h2>How Swift Courier Works</h2>
 
   <div class="steps-grid">
-
-    <div class="step-card">
+    <div class="step-card animate">
       <div class="step-icon">📍</div>
       <h3>Enter Locations</h3>
       <p>Provide pickup and drop-off points.</p>
     </div>
 
-    <div class="step-card">
+    <div class="step-card animate">
       <div class="step-icon">💰</div>
       <h3>Instant Pricing</h3>
       <p>Fair pricing based on distance.</p>
     </div>
 
-    <div class="step-card">
+    <div class="step-card animate">
       <div class="step-icon">🚴</div>
       <h3>Rider Assigned</h3>
       <p>A trusted rider is dispatched immediately.</p>
     </div>
 
-    <div class="step-card">
+    <div class="step-card animate">
       <div class="step-icon">📦</div>
       <h3>Delivered Safely</h3>
       <p>Your package arrives fast and secure.</p>
     </div>
+  </div>
+</section>
 
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <h2>What Our Customers Say</h2>
+  <div class="testimonial-grid">
+    <div class="testimonial-card animate">
+      <div class="rating">★★★★★</div>
+      <p>"Swift Courier delivered my package in under 2 hours! Absolutely reliable service. Will use again."</p>
+      <span>— Wanjiku M., Westlands</span>
+    </div>
+    <div class="testimonial-card animate">
+      <div class="rating">★★★★★</div>
+      <p>"I use them for my online shop deliveries daily. Always on time and my customers love it!"</p>
+      <span>— Kevin O., CBD</span>
+    </div>
+    <div class="testimonial-card animate">
+      <div class="rating">★★★★☆</div>
+      <p>"Great prices and the rider was very professional. Package arrived in perfect condition."</p>
+      <span>— Aisha N., Kilimani</span>
+    </div>
+    <div class="testimonial-card animate">
+      <div class="rating">★★★★★</div>
+      <p>"The tracking feature is amazing! I could see exactly where my delivery was. 10/10 service."</p>
+      <span>— Brian K., South B</span>
+    </div>
+  </div>
+</section>
+
+<!-- NAIROBI MAP WITH ROUTES -->
+<section class="map-section">
+  <h2>Our Delivery Routes</h2>
+  <p class="map-subtitle">We cover all major areas across Nairobi — from CBD to suburbs</p>
+  <div id="nairobi-map"></div>
+  <div class="route-legend">
+    <span class="legend-item"><span class="legend-line" style="background:#0b5ed7;"></span> CBD — Westlands</span>
+    <span class="legend-item"><span class="legend-line" style="background:#e74c3c;"></span> CBD — South B/C</span>
+    <span class="legend-item"><span class="legend-line" style="background:#27ae60;"></span> Westlands — Kilimani</span>
+    <span class="legend-item"><span class="legend-line" style="background:#f39c12;"></span> CBD — Eastlands</span>
+    <span class="legend-item"><span class="legend-line" style="background:#9b59b6;"></span> Kilimani — Karen</span>
   </div>
 </section>
 
 <div id="site-footer"></div>
 <div id="whatsapp-float"></div>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="shared.js"></script>
+<script src="map.js"></script>
 </body>
 </html>
