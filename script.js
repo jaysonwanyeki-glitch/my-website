@@ -1,58 +1,61 @@
 /* =========================
-   WAIT FOR PAGE TO LOAD
+   PAGE-SPECIFIC LOGIC
+   (contact form, geolocation)
+   Shared utilities live in
+   shared.js
 ========================= */
 document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================
-     DARK MODE TOGGLE 💡
+     GEOLOCATION BUTTON
   ========================= */
-  const toggle = document.getElementById("darkModeToggle");
+  const locBtn = document.getElementById("getLocationBtn");
+  const locField = document.getElementById("location");
 
-  if (toggle) {
-    toggle.addEventListener("click", () => {
-      document.body.classList.toggle("dark");
-
-      // Optional: remember mode
-      if (document.body.classList.contains("dark")) {
-        localStorage.setItem("theme", "dark");
-      } else {
-        localStorage.setItem("theme", "light");
-      }
+  if (locBtn && locField) {
+    locBtn.addEventListener("click", () => {
+      if (!navigator.geolocation) return;
+      navigator.geolocation.getCurrentPosition((pos) => {
+        locField.value = `${pos.coords.latitude},${pos.coords.longitude}`;
+        locBtn.textContent = "Location captured!";
+      });
     });
-  }
-
-  // Load saved theme
-  if (localStorage.getItem("theme") === "dark") {
-    document.body.classList.add("dark");
   }
 
   /* =========================
-     SCROLL MICRO-ANIMATIONS
+     ORDER FORM SUBMISSION
   ========================= */
-  const animatedItems = document.querySelectorAll(".animate");
+  const form = document.getElementById("orderForm");
 
-  if (animatedItems.length > 0) {
+  if (form) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = "1";
-            entry.target.style.transform = "translateY(0)";
-            observer.unobserve(entry.target); // animate once
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
+      const data = new FormData(form);
+      const order = {
+        id: Date.now(),
+        name: data.get("name"),
+        phone: data.get("phone"),
+        pickup: data.get("pickup"),
+        delivery: data.get("delivery"),
+        message: data.get("message"),
+        location: data.get("location"),
+        price: 200,
+        status: "Pending",
+      };
 
-    animatedItems.forEach(item => {
-      item.style.opacity = "0";
-      item.style.transform = "translateY(25px)";
-      item.style.transition = "all 0.6s ease";
-      observer.observe(item);
+      const orders = JSON.parse(localStorage.getItem("orders")) || [];
+      orders.push(order);
+      localStorage.setItem("orders", JSON.stringify(orders));
+
+      const whatsappMsg = `New Order from ${order.name}%0APhone: ${order.phone}%0APickup: ${order.pickup}%0ADelivery: ${order.delivery}%0ADetails: ${order.message}`;
+      window.open(
+        `https://wa.me/254793676054?text=${whatsappMsg}`,
+        "_blank"
+      );
+
+      form.reset();
     });
-
   }
 
 });
