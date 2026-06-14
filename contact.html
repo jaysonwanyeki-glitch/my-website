@@ -3,49 +3,80 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact - Swift Courier</title>
+  <title>Book a Delivery - Swift Courier</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-  <h1>Swift Courier</h1>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About Us</a>
-    <a href="services.html">Services</a>
-    <a href="pricing.html">Pricing</a>
-    <a href="contact.html">Contact</a>
-    <button id="darkModeToggle">🌙 Dark Mode</button>
-  </nav>
-</header>
+<div id="site-header"></div>
 
 <section class="hero">
-  <h2>Place an Order / Contact Us</h2>
-  <p>Fill the form below and we’ll get your package delivered quickly.</p>
+  <h2>Book a Delivery</h2>
+  <p>Fill in the details below and we'll dispatch a rider right away.</p>
 </section>
 
 <section class="content">
-  <form id="orderForm">
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="tel" name="phone" placeholder="Phone Number" required>
-    <input type="text" name="pickup" placeholder="Pickup Location" required>
-    <input type="text" name="delivery" placeholder="Delivery Location" required>
+  <div class="booking-container">
+    <form id="orderForm">
+      <h3 class="form-section-title">Your Details</h3>
+      <div class="form-row">
+        <input type="text" name="name" placeholder="Your Full Name" required>
+        <input type="tel" name="phone" placeholder="Phone (e.g. 0712345678)" required>
+      </div>
 
-    <input type="hidden" name="location" id="location">
-    <button type="button" id="getLocationBtn">📍 Use Current Location</button>
+      <h3 class="form-section-title">Delivery Details</h3>
+      <div class="form-row">
+        <input type="text" name="pickup" placeholder="Pickup Location" required>
+        <input type="text" name="delivery" placeholder="Delivery Location" required>
+      </div>
 
-    <textarea name="message" placeholder="Additional Details" rows="4"></textarea>
-    <button type="submit">Send Order</button>
-  </form>
+      <input type="hidden" name="location" id="location">
+      <button type="button" id="getLocationBtn" class="btn-location">📍 Use My Current Location</button>
+
+      <h3 class="form-section-title">Service Options</h3>
+      <div class="form-row">
+        <select name="service" required>
+          <option value="">Select Service Type</option>
+          <option value="parcel">Parcel Delivery (KSh 150–250)</option>
+          <option value="express">Express Delivery (KSh 400)</option>
+          <option value="business">Business Delivery</option>
+          <option value="bulk">Bulk Order (Custom Price)</option>
+        </select>
+        <select name="urgency" required>
+          <option value="">Select Urgency</option>
+          <option value="standard">Standard (2–4 hours)</option>
+          <option value="express">Express (Under 1 hour)</option>
+          <option value="scheduled">Scheduled Pickup</option>
+        </select>
+      </div>
+
+      <textarea name="message" placeholder="Additional details (package size, special instructions...)" rows="3"></textarea>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-primary btn-large">📦 Book Now via WhatsApp</button>
+        <a href="tel:+254793676054" class="btn-call">📞 Call Us Instead</a>
+      </div>
+    </form>
+
+    <div class="booking-sidebar">
+      <div class="sidebar-card">
+        <h4>💬 Quick Book via WhatsApp</h4>
+        <p>Just send us a message with your pickup &amp; delivery locations and we'll handle the rest!</p>
+        <a href="https://wa.me/254793676054?text=Hi%20Swift%20Courier!%20I%20need%20a%20delivery." class="btn-whatsapp">Chat on WhatsApp</a>
+      </div>
+      <div class="sidebar-card">
+        <h4>📍 Track Your Order</h4>
+        <p>Already booked? Track your delivery status in real-time.</p>
+        <a href="tracking.html" class="btn-outline">Track Order</a>
+      </div>
+    </div>
+  </div>
 </section>
 
-<footer>
-  <p>📞 WhatsApp: <a href="https://wa.me/254793676054">+254 793 676 054</a></p>
-  <p>&copy; 2026 Swift Courier Services</p>
-</footer>
+<div id="site-footer"></div>
+<div id="whatsapp-float"></div>
 
-<a href="https://wa.me/254793676054" class="whatsapp-float">💬</a>
+<script src="shared.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

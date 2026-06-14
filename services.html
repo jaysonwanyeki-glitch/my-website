@@ -8,17 +8,7 @@
 </head>
 <body>
 
-<header>
-  <h1>Swift Courier</h1>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About Us</a>
-    <a href="services.html">Services</a>
-    <a href="pricing.html">Pricing</a>
-    <a href="contact.html">Contact</a>
-    <button id="darkModeToggle">🌙 Dark Mode</button>
-  </nav>
-</header>
+<div id="site-header"></div>
 
 <section class="hero">
   <h2>Our Services</h2>
@@ -26,34 +16,35 @@
 </section>
 
 <section class="service-grid">
-  <div class="service-card">
-    <div class="service-icon">📦</div>
+  <div class="service-card animate">
+    <img src="images/parcel-delivery.jpg" alt="Parcel Delivery" class="service-img">
     <h3>Parcel Delivery</h3>
-    <p>Fast delivery for packages within Nairobi.</p>
+    <p>Fast delivery for packages within Nairobi. From documents to small parcels, we handle it all with care.</p>
+    <a href="contact.html"><button class="btn-small">Book Now</button></a>
   </div>
-  <div class="service-card">
-    <div class="service-icon">🏢</div>
+  <div class="service-card animate">
+    <img src="images/business-delivery.jpg" alt="Business Deliveries" class="service-img">
     <h3>Business Deliveries</h3>
-    <p>Reliable deliveries for shops and online sellers.</p>
+    <p>Reliable deliveries for shops and online sellers. Daily pickups and scheduled routes available.</p>
+    <a href="contact.html"><button class="btn-small">Book Now</button></a>
   </div>
-  <div class="service-card">
-    <div class="service-icon">⚡</div>
+  <div class="service-card animate">
+    <img src="images/express-delivery.jpg" alt="Express Delivery" class="service-img">
     <h3>Express Delivery</h3>
-    <p>Urgent same-day deliveries.</p>
+    <p>Urgent same-day deliveries. When time matters, our express riders get it there fast.</p>
+    <a href="contact.html"><button class="btn-small">Book Now</button></a>
   </div>
-  <div class="service-card">
-    <div class="service-icon">🛒</div>
+  <div class="service-card animate">
+    <img src="images/bulk-orders.jpg" alt="Bulk Orders" class="service-img">
     <h3>Bulk Orders</h3>
-    <p>Efficient handling for large quantity deliveries.</p>
+    <p>Efficient handling for large quantity deliveries. Special rates for businesses with regular bulk needs.</p>
+    <a href="contact.html"><button class="btn-small">Book Now</button></a>
   </div>
 </section>
 
-<footer>
-  <p>📞 WhatsApp: <a href="https://wa.me/254793676054">+254 793 676 054</a></p>
-  <p>&copy; 2026 Swift Courier Services</p>
-</footer>
+<div id="site-footer"></div>
+<div id="whatsapp-float"></div>
 
-<a href="https://wa.me/254793676054" class="whatsapp-float">💬</a>
-<script src="script.js"></script>
+<script src="shared.js"></script>
 </body>
 </html>
