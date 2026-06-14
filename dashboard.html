@@ -2,30 +2,131 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Dispatcher Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Swift Courier</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
 </head>
 <body>
 
-<header class="dashboard-header">
-  <h2>🚴 Rider Assignment Dashboard</h2>
-</header>
+<!-- PIN GATE — hides dashboard until admin enters correct PIN -->
+<div id="pinGate" class="pin-gate">
+  <div class="pin-card">
+    <div class="pin-icon">🔒</div>
+    <h2>Admin Access</h2>
+    <p>Enter your PIN to access the dashboard.</p>
+    <div class="pin-input-row">
+      <input type="password" id="pinInput" maxlength="10" placeholder="Enter PIN" autocomplete="off">
+      <button id="pinSubmit" class="btn-primary">Unlock</button>
+    </div>
+    <p id="pinError" class="pin-error" style="display:none;">Incorrect PIN. Try again.</p>
+  </div>
+</div>
 
-<section class="dashboard">
-  <table>
-    <thead>
-      <tr>
-        <th>Customer</th>
-        <th>Pickup</th>
-        <th>Delivery</th>
-        <th>Price</th>
-        <th>Assign Rider</th>
-      </tr>
-    </thead>
-    <tbody id="ordersTable"></tbody>
-  </table>
+<div id="dashboardContent" style="display:none;">
+
+<div id="site-header"></div>
+
+<section class="hero">
+  <h2>Business Dashboard</h2>
+  <p>Track your deliveries and revenue — export to Excel for your records.</p>
 </section>
 
+<section class="content dashboard-content">
+
+  <!-- SUMMARY CARDS -->
+  <div class="dashboard-summary">
+    <div class="summary-card">
+      <div class="summary-icon">📦</div>
+      <div class="summary-value" id="totalOrders">0</div>
+      <div class="summary-label">Total Orders</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-icon">💰</div>
+      <div class="summary-value" id="totalRevenue">KSh 0</div>
+      <div class="summary-label">Total Revenue</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-icon">📅</div>
+      <div class="summary-value" id="todayOrders">0</div>
+      <div class="summary-label">Today's Orders</div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-icon">📊</div>
+      <div class="summary-value" id="todayRevenue">KSh 0</div>
+      <div class="summary-label">Today's Revenue</div>
+    </div>
+  </div>
+
+  <!-- EXPORT BUTTONS -->
+  <div class="dashboard-export">
+    <h3>Export to Excel</h3>
+    <div class="export-buttons">
+      <button id="exportDaily" class="btn-primary">📥 Export Today's Deliveries</button>
+      <button id="exportMonthly" class="btn-primary">📥 Export Monthly Summary</button>
+      <button id="exportAll" class="btn-outline">📥 Export All Orders</button>
+    </div>
+  </div>
+
+  <!-- DATE FILTER -->
+  <div class="dashboard-filter">
+    <label for="filterDate">Filter by date:</label>
+    <input type="date" id="filterDate">
+    <button id="applyFilter" class="btn-primary btn-sm">Apply</button>
+    <button id="clearFilter" class="btn-outline btn-sm">Clear</button>
+  </div>
+
+  <!-- DAILY BREAKDOWN TABLE -->
+  <div class="dashboard-table-section">
+    <h3 id="tableTitle">All Orders</h3>
+    <div class="table-wrapper">
+      <table id="ordersTable">
+        <thead>
+          <tr>
+            <th>Tracking ID</th>
+            <th>Date</th>
+            <th>Customer</th>
+            <th>Route</th>
+            <th>Service</th>
+            <th>Price (KSh)</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="ordersTableBody">
+        </tbody>
+      </table>
+    </div>
+    <p id="noOrdersMsg" class="no-orders" style="display:none;">No orders found. <a href="contact.html">Book your first delivery!</a></p>
+  </div>
+
+  <!-- MONTHLY BREAKDOWN -->
+  <div class="dashboard-table-section">
+    <h3>Monthly Summary</h3>
+    <div class="table-wrapper">
+      <table id="monthlyTable">
+        <thead>
+          <tr>
+            <th>Month</th>
+            <th>Total Orders</th>
+            <th>Total Revenue (KSh)</th>
+            <th>Avg Order Value (KSh)</th>
+            <th>Top Service</th>
+          </tr>
+        </thead>
+        <tbody id="monthlyTableBody">
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</section>
+
+<div id="site-footer"></div>
+<div id="whatsapp-float"></div>
+
+</div><!-- /dashboardContent -->
+
+<script src="shared.js"></script>
 <script src="dashboard.js"></script>
 </body>
 </html>
