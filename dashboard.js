@@ -1,44 +1,83 @@
-const table = document.getElementById("ordersTable");
-const orders = JSON.parse(localStorage.getItem("orders")) || [];
+/* =========================
+   DASHBOARD AUTH GATE
+========================= */
+(function () {
+  var key = sessionStorage.getItem("dashAuth");
+  if (key !== "granted") {
+    var pass = prompt("Enter dispatcher password:");
+    if (pass !== "SwiftDispatch2026") {
+      document.body.innerHTML = "<p style='padding:40px;text-align:center'>Access denied.</p>";
+      return;
+    }
+    sessionStorage.setItem("dashAuth", "granted");
+  }
 
-table.innerHTML = "";
+  /* =========================
+     RENDER ORDERS (XSS-SAFE)
+  ========================= */
+  var table = document.getElementById("ordersTable");
+  var orders = JSON.parse(localStorage.getItem("orders") || "[]");
 
-orders.forEach(order => {
-  const row = document.createElement("tr");
+  table.textContent = "";
 
-  row.innerHTML = `
-    <td>${order.name}</td>
-    <td>${order.pickup}</td>
-    <td>${order.delivery}</td>
-    <td>Ksh ${order.price}</td>
-    <td>
-      <button onclick="assignRider(${order.id})">Assign</button>
-    </td>
-  `;
+  orders.forEach(function (order) {
+    var row = document.createElement("tr");
 
-  table.appendChild(row);
-});
+    var tdName = document.createElement("td");
+    tdName.textContent = order.name || "";
+    row.appendChild(tdName);
 
-function assignRider(id) {
-  const rider = prompt("Enter Rider Phone (2547XXXXXXXX):");
-  if (!rider) return;
+    var tdPickup = document.createElement("td");
+    tdPickup.textContent = order.pickup || "";
+    row.appendChild(tdPickup);
 
-  const order = orders.find(o => o.id === id);
+    var tdDelivery = document.createElement("td");
+    tdDelivery.textContent = order.delivery || "";
+    row.appendChild(tdDelivery);
 
-  const message = `
-🚴 NEW DELIVERY JOB
-👤 Customer: ${order.name}
-📞 ${order.phone}
-📍 Pickup: ${order.pickup}
-🏁 Delivery: ${order.delivery}
-💰 Pay: Ksh ${order.price}
-`;
+    var tdPrice = document.createElement("td");
+    tdPrice.textContent = "Ksh " + (order.price || "0");
+    row.appendChild(tdPrice);
 
-  window.open(
-    `https://wa.me/${rider}?text=${encodeURIComponent(message)}`,
-    "_blank"
-  );
+    var tdAction = document.createElement("td");
+    var btn = document.createElement("button");
+    btn.textContent = "Assign";
+    btn.addEventListener("click", function () {
+      assignRider(order.id);
+    });
+    tdAction.appendChild(btn);
+    row.appendChild(tdAction);
 
-  order.status = "Assigned";
-  localStorage.setItem("orders", JSON.stringify(orders));
-}
+    table.appendChild(row);
+  });
+
+  /* =========================
+     ASSIGN RIDER
+  ========================= */
+  function assignRider(id) {
+    var rider = prompt("Enter Rider Phone (2547XXXXXXXX):");
+    if (!rider || !/^2547\d{8}$/.test(rider)) {
+      alert("Invalid phone number. Use format 2547XXXXXXXX.");
+      return;
+    }
+
+    var order = orders.find(function (o) { return o.id === id; });
+    if (!order) return;
+
+    var message =
+      "\uD83D\uDEB4 NEW DELIVERY JOB\n" +
+      "\uD83D\uDC64 Customer: " + (order.name || "") + "\n" +
+      "\uD83D\uDCDE " + (order.phone || "") + "\n" +
+      "\uD83D\uDCCD Pickup: " + (order.pickup || "") + "\n" +
+      "\uD83C\uDFC1 Delivery: " + (order.delivery || "") + "\n" +
+      "\uD83D\uDCB0 Pay: Ksh " + (order.price || "0");
+
+    window.open(
+      "https://wa.me/" + encodeURIComponent(rider) + "?text=" + encodeURIComponent(message),
+      "_blank"
+    );
+
+    order.status = "Assigned";
+    localStorage.setItem("orders", JSON.stringify(orders));
+  }
+})();
