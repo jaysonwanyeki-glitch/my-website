@@ -34,6 +34,73 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
+     CONTACT FORM VALIDATION
+  ========================= */
+  const orderForm = document.getElementById("orderForm");
+  if (orderForm) {
+    const phoneInput = orderForm.querySelector('input[name="phone"]');
+    if (phoneInput) {
+      phoneInput.setAttribute("pattern", "^(\\+?254|0)7\\d{8}$");
+      phoneInput.setAttribute("title", "Kenyan phone number, e.g. 0712345678 or +254712345678");
+    }
+
+    orderForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const phone = phoneInput ? phoneInput.value.trim() : "";
+      if (!/^(\+?254|0)7\d{8}$/.test(phone)) {
+        alert("Please enter a valid Kenyan phone number (e.g. 0712345678).");
+        return;
+      }
+
+      const data = new FormData(orderForm);
+      const order = {
+        id: Date.now(),
+        name: data.get("name"),
+        phone: phone,
+        pickup: data.get("pickup"),
+        delivery: data.get("delivery"),
+        message: data.get("message"),
+        location: data.get("location"),
+        price: 0,
+        status: "Pending"
+      };
+
+      var orders = JSON.parse(localStorage.getItem("orders") || "[]");
+      orders.push(order);
+      localStorage.setItem("orders", JSON.stringify(orders));
+
+      alert("Order placed! We will contact you shortly.");
+      orderForm.reset();
+    });
+  }
+
+  /* =========================
+     GEOLOCATION BUTTON
+  ========================= */
+  const locBtn = document.getElementById("getLocationBtn");
+  const locInput = document.getElementById("location");
+  if (locBtn && locInput) {
+    locBtn.addEventListener("click", function () {
+      if (!navigator.geolocation) {
+        alert("Geolocation is not supported by your browser.");
+        return;
+      }
+      locBtn.textContent = "Locating...";
+      navigator.geolocation.getCurrentPosition(
+        function (pos) {
+          locInput.value = pos.coords.latitude + "," + pos.coords.longitude;
+          locBtn.textContent = "Location captured";
+        },
+        function () {
+          alert("Unable to get your location.");
+          locBtn.textContent = "Try again";
+        }
+      );
+    });
+  }
+
+  /* =========================
      SCROLL MICRO-ANIMATIONS
   ========================= */
   const animatedItems = document.querySelectorAll(".animate");
