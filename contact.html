@@ -3,51 +3,190 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; connect-src 'self';">
+  <meta name="description" content="Place a secure delivery order with Swift Courier. Documents, sensitive packages, small parcels - delivered across Kenya.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' https://*.tile.openstreetmap.org https://unpkg.com data:; connect-src 'self';">
   <meta name="referrer" content="no-referrer-when-downgrade">
-  <title>Contact - Swift Courier</title>
+  <title>Place Order | Swift Courier Kenya</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
-  <h1>Swift Courier</h1>
+  <div class="header-brand">
+    <h1>Swift Courier</h1>
+    <span class="header-tagline">Secure Business Delivery</span>
+  </div>
   <nav>
     <a href="index.html">Home</a>
-    <a href="about.html">About Us</a>
+    <a href="about.html">About</a>
     <a href="services.html">Services</a>
     <a href="pricing.html">Pricing</a>
-    <a href="contact.html">Contact</a>
-    <button id="darkModeToggle">🌙 Dark Mode</button>
+    <a href="map.html">Service Map</a>
+    <a href="contact.html" class="active">Order</a>
+    <a href="admin.html" class="nav-admin">Admin</a>
+    <button id="darkModeToggle" title="Toggle Dark Mode">💡</button>
   </nav>
 </header>
 
-<section class="hero">
-  <h2>Place an Order / Contact Us</h2>
-  <p>Fill the form below and we’ll get your package delivered quickly.</p>
+<section class="hero compact">
+  <h2>Place a Secure Order</h2>
+  <p>Fill in the details below and we'll handle your delivery with the utmost care and security.</p>
 </section>
 
 <section class="content">
-  <form id="orderForm">
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="tel" name="phone" placeholder="Phone Number" required>
-    <input type="text" name="pickup" placeholder="Pickup Location" required>
-    <input type="text" name="delivery" placeholder="Delivery Location" required>
+  <div class="order-layout">
+    <!-- ORDER FORM -->
+    <div class="order-form-container">
+      <form id="orderForm">
+        <h3>📋 Order Details</h3>
 
-    <input type="hidden" name="location" id="location">
-    <button type="button" id="getLocationBtn">📍 Use Current Location</button>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name *</label>
+            <input type="text" name="name" placeholder="Business or full name" required>
+          </div>
+          <div class="form-group">
+            <label>Phone Number *</label>
+            <input type="tel" name="phone" placeholder="0712 345 678" required>
+          </div>
+        </div>
 
-    <textarea name="message" placeholder="Additional Details" rows="4"></textarea>
-    <button type="submit">Send Order</button>
-  </form>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Pickup Location *</label>
+            <input type="text" name="pickup" id="pickupInput" placeholder="e.g. Westlands, Nairobi" required>
+          </div>
+          <div class="form-group">
+            <label>Delivery Location *</label>
+            <input type="text" name="delivery" id="deliveryInput" placeholder="e.g. CBD, Nairobi" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Package Type *</label>
+            <select name="type" id="orderType" required>
+              <option value="">Select type...</option>
+              <option value="document">📄 Confidential Document</option>
+              <option value="sensitive">🔒 Sensitive Package</option>
+              <option value="parcel">📦 Small Parcel</option>
+              <option value="business">🏢 Business Delivery</option>
+              <option value="express">⚡ Express Rush</option>
+              <option value="multistop">📍 Multi-Stop</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Security Level</label>
+            <select name="security" id="securityLevel">
+              <option value="Standard">Standard (Free)</option>
+              <option value="High">High Security (+KSh 50)</option>
+              <option value="Maximum">Maximum Security (+KSh 100)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>What's being delivered? *</label>
+          <textarea name="message" placeholder="Describe the item(s): documents, electronics, samples, etc. Include quantity and any special instructions." rows="3" required></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Estimated Value (KSh)</label>
+            <input type="number" name="value" placeholder="For insurance purposes" min="0">
+          </div>
+          <div class="form-group">
+            <label>Preferred Delivery Time</label>
+            <select name="deliveryTime">
+              <option value="asap">As soon as possible</option>
+              <option value="morning">Morning (8AM - 12PM)</option>
+              <option value="afternoon">Afternoon (12PM - 4PM)</option>
+              <option value="evening">Evening (4PM - 7PM)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>📍 GPS Location (Optional)</label>
+          <div class="location-row">
+            <input type="text" name="location" id="location" placeholder="Click button to capture" readonly>
+            <button type="button" id="getLocationBtn" class="btn-location">📍 Get Location</button>
+          </div>
+        </div>
+
+        <div class="estimated-price" id="estimatedPrice">
+          Estimated Price: <strong>KSh <span id="priceValue">0</span></strong>
+          <small>Final price confirmed after pickup</small>
+        </div>
+
+        <div class="security-note">
+          <span>🔒</span>
+          <p>Your information is encrypted and secure. We never share customer data with third parties.</p>
+        </div>
+
+        <button type="submit" class="btn-submit">📤 Place Secure Order</button>
+      </form>
+    </div>
+
+    <!-- CONTACT INFO SIDEBAR -->
+    <div class="order-sidebar">
+      <div class="contact-card">
+        <h4>📞 Contact Us</h4>
+        <p><strong>WhatsApp:</strong><br><a href="https://wa.me/254793676054">+254 793 676 054</a></p>
+        <p><strong>Business Hours:</strong><br>Mon - Sat: 7:00 AM - 8:00 PM</p>
+        <p><strong>Sunday:</strong><br>9:00 AM - 5:00 PM (Express only)</p>
+      </div>
+
+      <div class="contact-card">
+        <h4>⚡ Express Hotline</h4>
+        <p>For urgent deliveries, WhatsApp us directly:</p>
+        <a href="https://wa.me/254793676054?text=URGENT%20DELIVERY%20REQUEST" class="btn-whatsapp-full">💬 WhatsApp Express</a>
+      </div>
+
+      <div class="contact-card">
+        <h4>🛡️ Security Promise</h4>
+        <ul class="security-list">
+          <li>✓ Tamper-proof sealing</li>
+          <li>✓ Verified riders only</li>
+          <li>✓ Photo confirmation</li>
+          <li>✓ Insurance included</li>
+          <li>✓ Chain of custody log</li>
+        </ul>
+      </div>
+
+      <div class="contact-card">
+        <h4>📍 Service Areas</h4>
+        <p>Nairobi CBD, Westlands, Kilimani, Eastleigh, Karen, Ngong Road, Thika Road, Mombasa Road & Greater Nairobi.</p>
+        <a href="map.html">View full map →</a>
+      </div>
+    </div>
+  </div>
 </section>
 
 <footer>
-  <p>📞 WhatsApp: <a href="https://wa.me/254793676054">+254 793 676 054</a></p>
-  <p>&copy; 2026 Swift Courier Services</p>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>Swift Courier</h4>
+      <p>Secure business delivery across Kenya.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="services.html">Services</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="map.html">Service Map</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p>📞 <a href="https://wa.me/254793676054">+254 793 676 054</a></p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Swift Courier Services. All rights reserved.</p>
+  </div>
 </footer>
 
-<a href="https://wa.me/254793676054" class="whatsapp-float">💬</a>
+<a href="https://wa.me/254793676054" class="whatsapp-float" title="Chat on WhatsApp">💬</a>
+
 <script src="script.js"></script>
 </body>
 </html>

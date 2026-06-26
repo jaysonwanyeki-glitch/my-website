@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Swift Courier service map - pickup and drop-off coverage across Kenya with major roads and service zones.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' https://*.tile.openstreetmap.org https://unpkg.com data:; connect-src 'self';">
+  <meta name="referrer" content="no-referrer-when-downgrade">
+  <title>Service Map | Swift Courier Kenya</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-brand">
+    <h1>Swift Courier</h1>
+    <span class="header-tagline">Secure Business Delivery</span>
+  </div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="map.html" class="active">Service Map</a>
+    <a href="contact.html">Order</a>
+    <a href="admin.html" class="nav-admin">Admin</a>
+    <button id="darkModeToggle" title="Toggle Dark Mode">💡</button>
+  </nav>
+</header>
+
+<section class="hero compact">
+  <h2>Kenya Service Map</h2>
+  <p>View our pickup and drop-off coverage across Kenya. Click on any area to see service details and estimated delivery times.</p>
+</section>
+
+<!-- MAP CONTROLS -->
+<section class="map-controls">
+  <div class="map-filters">
+    <button class="filter-btn active" data-filter="all">All Areas</button>
+    <button class="filter-btn" data-filter="cbd">Nairobi CBD</button>
+    <button class="filter-btn" data-filter="westlands">Westlands</button>
+    <button class="filter-btn" data-filter="kilimani">Kilimani</button>
+    <button class="filter-btn" data-filter="eastleigh">Eastleigh</button>
+    <button class="filter-btn" data-filter="thika">Thika Road</button>
+    <button class="filter-btn" data-filter="mombasa">Mombasa Road</button>
+    <button class="filter-btn" data-filter="outskirts">Greater Nairobi</button>
+  </div>
+  <div class="map-search-box">
+    <input type="text" id="mapSearchInput" placeholder="Search location...">
+    <button id="mapSearchBtn">🔍</button>
+  </div>
+</section>
+
+<!-- MAP CONTAINER -->
+<section class="map-section">
+  <div id="kenyaMap"></div>
+  <div class="map-sidebar">
+    <h3>📍 Service Zones</h3>
+    <div class="zone-list" id="zoneList">
+      <div class="zone-item" data-zone="cbd">
+        <div class="zone-color" style="background:#0b5ed7;"></div>
+        <div class="zone-info">
+          <strong>Nairobi CBD</strong>
+          <span>90-min delivery | KSh 150-250</span>
+        </div>
+      </div>
+      <div class="zone-item" data-zone="westlands">
+        <div class="zone-color" style="background:#10b981;"></div>
+        <div class="zone-info">
+          <strong>Westlands</strong>
+          <span>90-min delivery | KSh 200-300</span>
+        </div>
+      </div>
+      <div class="zone-item" data-zone="kilimani">
+        <div class="zone-color" style="background:#f59e0b;"></div>
+        <div class="zone-info">
+          <strong>Kilimani & Hurlingham</strong>
+          <span>90-min delivery | KSh 200-300</span>
+        </div>
+      </div>
+      <div class="zone-item" data-zone="eastleigh">
+        <div class="zone-color" style="background:#ef4444;"></div>
+        <div class="zone-info">
+          <strong>Eastleigh & Pangani</strong>
+          <span>90-min delivery | KSh 200-300</span>
+        </div>
+      </div>
+      <div class="zone-item" data-zone="thika">
+        <div class="zone-color" style="background:#8b5cf6;"></div>
+        <div class="zone-info">
+          <strong>Thika Road Corridor</strong>
+          <span>2-hr delivery | KSh 300-500</span>
+        </div>
+      </div>
+      <div class="zone-item" data-zone="mombasa">
+        <div class="zone-color" style="background:#06b6d4;"></div>
+        <div class="zone-info">
+          <strong>Mombasa Road</strong>
+          <span>2-hr delivery | KSh 300-500</span>
+        </div>
+      </div>
+      <div class="zone-item" data-zone="karen">
+        <div class="zone-color" style="background:#ec4899;"></div>
+        <div class="zone-info">
+          <strong>Karen & Ngong</strong>
+          <span>2-hr delivery | KSh 350-550</span>
+        </div>
+      </div>
+      <div class="zone-item" data-zone="outskirts">
+        <div class="zone-color" style="background:#6b7280;"></div>
+        <div class="zone-info">
+          <strong>Greater Nairobi Area</strong>
+          <span>Same day | KSh 400-800</span>
+        </div>
+      </div>
+    </div>
+    <div class="map-legend">
+      <h4>🛣️ Major Routes</h4>
+      <div class="legend-item"><span class="legend-line" style="background:#0b5ed7;"></span> Mombasa Road (A104)</div>
+      <div class="legend-item"><span class="legend-line" style="background:#10b981;"></span> Thika Road (A2)</div>
+      <div class="legend-item"><span class="legend-line" style="background:#f59e0b;"></span> Ngong Road (B36)</div>
+      <div class="legend-item"><span class="legend-line" style="background:#ef4444;"></span> Waiyaki Way (A104)</div>
+      <div class="legend-item"><span class="legend-line" style="background:#8b5cf6;"></span> Jogoo Road (C98)</div>
+      <div class="legend-item"><span class="legend-line" style="background:#06b6d4;"></span> Eastern Bypass</div>
+    </div>
+  </div>
+</section>
+
+<!-- ROUTE INFO -->
+<section class="content">
+  <h2 style="text-align:center; margin-bottom:30px;">Popular Routes & Times</h2>
+  <div class="route-grid">
+    <div class="route-card">
+      <div class="route-from">CBD ↔ Westlands</div>
+      <div class="route-time">⏱️ 20-40 min</div>
+      <div class="route-price">KSh 150 - 250</div>
+    </div>
+    <div class="route-card">
+      <div class="route-from">CBD ↔ Kilimani</div>
+      <div class="route-time">⏱️ 25-45 min</div>
+      <div class="route-price">KSh 150 - 250</div>
+    </div>
+    <div class="route-card">
+      <div class="route-from">CBD ↔ Karen</div>
+      <div class="route-time">⏱️ 45-75 min</div>
+      <div class="route-price">KSh 350 - 500</div>
+    </div>
+    <div class="route-card">
+      <div class="route-from">CBD ↔ Thika</div>
+      <div class="route-time">⏱️ 60-90 min</div>
+      <div class="route-price">KSh 400 - 600</div>
+    </div>
+    <div class="route-card">
+      <div class="route-from">CBD ↔ Mombasa Rd</div>
+      <div class="route-time">⏱️ 30-60 min</div>
+      <div class="route-price">KSh 250 - 400</div>
+    </div>
+    <div class="route-card">
+      <div class="route-from">Westlands ↔ Karen</div>
+      <div class="route-time">⏱️ 50-80 min</div>
+      <div class="route-price">KSh 350 - 550</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>Swift Courier</h4>
+      <p>Secure business delivery across Kenya.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="services.html">Services</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="contact.html">Place Order</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p>📞 <a href="https://wa.me/254793676054">+254 793 676 054</a></p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Swift Courier Services. All rights reserved.</p>
+  </div>
+</footer>
+
+<a href="https://wa.me/254793676054" class="whatsapp-float" title="Chat on WhatsApp">💬</a>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="map.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

@@ -3,106 +3,206 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; connect-src 'self';">
+  <meta name="description" content="Swift Courier - Secure business delivery service in Kenya. Documents, sensitive packages, small parcels. Fast pickup & drop-off across Nairobi and major towns.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' https://*.tile.openstreetmap.org https://unpkg.com data:; connect-src 'self';">
   <meta name="referrer" content="no-referrer-when-downgrade">
-  <title>Swift Courier</title>
+  <title>Swift Courier | Secure Business Delivery Kenya</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <!-- HEADER -->
 <header>
-  <h1>Swift Courier</h1>
+  <div class="header-brand">
+    <h1>Swift Courier</h1>
+    <span class="header-tagline">Secure Business Delivery</span>
+  </div>
   <nav>
     <a href="index.html" class="active">Home</a>
-    <a href="about.html">About Us</a>
+    <a href="about.html">About</a>
     <a href="services.html">Services</a>
     <a href="pricing.html">Pricing</a>
-    <a href="contact.html">Contact</a>
+    <a href="map.html">Service Map</a>
+    <a href="contact.html">Order</a>
+    <a href="admin.html" class="nav-admin">Admin</a>
     <button id="darkModeToggle" title="Toggle Dark Mode">💡</button>
   </nav>
 </header>
 
 <!-- HERO -->
 <section class="hero">
-  <h2>Fast & Reliable Courier Services in Nairobi</h2>
-  <p>Send packages quickly, safely, and stress-free. Pickup & delivery made simple.</p>
-  <a href="contact.html">
-    <button>Place an Order</button>
-  </a>
+  <div class="hero-badge">🔒 Trusted by 500+ Businesses</div>
+  <h2>Secure Delivery for Your Business</h2>
+  <p>From confidential documents to sensitive small packages — we deliver with speed, security, and full tracking across Kenya.</p>
+  <div class="hero-actions">
+    <a href="contact.html"><button class="btn-primary">Place Secure Order</button></a>
+    <a href="map.html"><button class="btn-secondary">View Service Map</button></a>
+  </div>
+  <div class="trust-badges">
+    <div class="trust-item"><span class="trust-icon">🔐</span> Sealed & Signed</div>
+    <div class="trust-item"><span class="trust-icon">📋</span> Chain of Custody</div>
+    <div class="trust-item"><span class="trust-icon">📱</span> Live Tracking</div>
+    <div class="trust-item"><span class="trust-icon">🛡️</span> Insured Deliveries</div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<section class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-number" data-target="15000">0</div>
+    <div class="stat-label">Deliveries Made</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number" data-target="500">0</div>
+    <div class="stat-label">Business Clients</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number" data-target="98">0</div>
+    <div class="stat-label">% On-Time Rate</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number" data-target="45">0</div>
+    <div class="stat-label">Active Riders</div>
+  </div>
 </section>
 
 <!-- SERVICES -->
-<section class="service-grid">
+<section class="service-grid" id="services">
+  <div class="service-card">
+    <div class="service-icon">📄</div>
+    <h3>Document Delivery</h3>
+    <p>Confidential documents, contracts, legal papers — sealed, signed, and tracked from pickup to delivery.</p>
+    <a href="contact.html?type=document" class="service-link">Order Now →</a>
+  </div>
+
+  <div class="service-card">
+    <div class="service-icon">🔒</div>
+    <h3>Sensitive Packages</h3>
+    <p>Small sensitive items with tamper-proof sealing, chain of custody tracking, and signature confirmation.</p>
+    <a href="contact.html?type=sensitive" class="service-link">Order Now →</a>
+  </div>
+
   <div class="service-card">
     <div class="service-icon">📦</div>
-    <h3>Parcel Delivery</h3>
-    <p>Fast and secure parcel delivery across Nairobi.</p>
+    <h3>Small Parcel Delivery</h3>
+    <p>Fast and secure small parcel delivery across Nairobi and major Kenyan towns with real-time updates.</p>
+    <a href="contact.html?type=parcel" class="service-link">Order Now →</a>
   </div>
 
   <div class="service-card">
     <div class="service-icon">🏢</div>
-    <h3>Business Deliveries</h3>
-    <p>Trusted delivery partner for shops and offices.</p>
-  </div>
-
-  <div class="service-card">
-    <div class="service-icon">⚡</div>
-    <h3>Express Delivery</h3>
-    <p>Urgent same-day delivery when time matters.</p>
-  </div>
-
-  <div class="service-card">
-    <div class="service-icon">🛒</div>
-    <h3>Bulk Orders</h3>
-    <p>Efficient handling of multiple deliveries.</p>
+    <h3>Business Logistics</h3>
+    <p>Dedicated fleet for corporate clients. Scheduled pickups, bulk handling, and monthly billing.</p>
+    <a href="contact.html?type=business" class="service-link">Get Quote →</a>
   </div>
 </section>
 
 <!-- HOW IT WORKS -->
 <section class="how-it-works">
-  <h2>How Swift Courier Works</h2>
-
+  <h2>How Secure Delivery Works</h2>
   <div class="steps-grid">
-
     <div class="step-card">
+      <div class="step-badge">1</div>
+      <div class="step-icon">📋</div>
+      <h3>Book Your Delivery</h3>
+      <p>Select package type, set security level, and provide pickup/drop-off details.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-badge">2</div>
+      <div class="step-icon">🔐</div>
+      <h3>Secure Pickup</h3>
+      <p>Verified rider arrives, confirms identity, seals package with tamper-evident seal.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-badge">3</div>
       <div class="step-icon">📍</div>
-      <h3>Enter Locations</h3>
-      <p>Provide pickup and drop-off points.</p>
+      <h3>Live Tracking</h3>
+      <p>Track your delivery in real-time via WhatsApp updates and GPS location sharing.</p>
     </div>
-
     <div class="step-card">
-      <div class="step-icon">💰</div>
-      <h3>Instant Pricing</h3>
-      <p>Fair pricing based on distance.</p>
+      <div class="step-badge">4</div>
+      <div class="step-icon">✅</div>
+      <h3>Confirmed Delivery</h3>
+      <p>Recipient signs, photo proof captured, delivery confirmation sent instantly.</p>
     </div>
+  </div>
+</section>
 
-    <div class="step-card">
-      <div class="step-icon">🚴</div>
-      <h3>Rider Assigned</h3>
-      <p>A trusted rider is dispatched immediately.</p>
+<!-- SECURITY FEATURES -->
+<section class="security-section">
+  <h2>Why Businesses Trust Us</h2>
+  <div class="security-grid">
+    <div class="security-card">
+      <div class="security-icon">🔏</div>
+      <h3>Tamper-Proof Sealing</h3>
+      <p>Every sensitive package gets a unique tamper-evident seal with serial number tracking.</p>
     </div>
-
-    <div class="step-card">
-      <div class="step-icon">📦</div>
-      <h3>Delivered Safely</h3>
-      <p>Your package arrives fast and secure.</p>
+    <div class="security-card">
+      <div class="security-icon">📜</div>
+      <h3>Chain of Custody</h3>
+      <p>Complete digital log from pickup to delivery — who handled it, when, and where.</p>
     </div>
+    <div class="security-card">
+      <div class="security-icon">📸</div>
+      <h3>Photo Proof</h3>
+      <p>Photo confirmation at pickup and delivery for complete peace of mind.</p>
+    </div>
+    <div class="security-card">
+      <div class="security-icon">🆔</div>
+      <h3>Verified Riders</h3>
+      <p>All riders are background-checked, ID-verified, and trained in secure handling.</p>
+    </div>
+    <div class="security-card">
+      <div class="security-icon">🔔</div>
+      <h3>Instant Alerts</h3>
+      <p>WhatsApp notifications at every stage — picked up, in transit, delivered.</p>
+    </div>
+    <div class="security-card">
+      <div class="security-icon">🛡️</div>
+      <h3>Delivery Insurance</h3>
+      <p>Every delivery is insured up to KSh 50,000. Optional higher coverage available.</p>
+    </div>
+  </div>
+</section>
 
+<!-- CTA SECTION -->
+<section class="cta-section">
+  <h2>Ready for Secure Deliveries?</h2>
+  <p>Join 500+ businesses across Kenya that trust Swift Courier for their sensitive deliveries.</p>
+  <div class="cta-actions">
+    <a href="contact.html"><button class="btn-primary">Start Your Order</button></a>
+    <a href="https://wa.me/254793676054"><button class="btn-whatsapp">💬 Chat on WhatsApp</button></a>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <p>
-    📞 WhatsApp:
-    <a href="https://wa.me/254793676054">+254 793 676 054</a>
-  </p>
-  <p>&copy; 2026 Swift Courier Services</p>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>Swift Courier</h4>
+      <p>Secure business delivery across Kenya. Documents, sensitive packages, and small parcels delivered with care.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="services.html">Services</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="map.html">Service Map</a>
+      <a href="admin.html">Admin Dashboard</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p>📞 <a href="https://wa.me/254793676054">+254 793 676 054</a></p>
+      <p>📍 Nairobi, Kenya</p>
+      <p>🕐 Mon - Sat: 7AM - 8PM</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Swift Courier Services. All rights reserved.</p>
+  </div>
 </footer>
 
 <!-- WHATSAPP FLOAT -->
-<a href="https://wa.me/254793676054" class="whatsapp-float">💬</a>
+<a href="https://wa.me/254793676054" class="whatsapp-float" title="Chat on WhatsApp">💬</a>
 
 <script src="script.js"></script>
 </body>
