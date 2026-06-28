@@ -1,277 +1,313 @@
-<!DOCTYPE html>
+
+# Write pricing.html
+with open(os.path.join(output_dir, 'pricing.html'), 'w') as f:
+    f.write('''<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Swift Courier pricing - secure document delivery, sensitive packages, and business logistics pricing in Kenya.">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' https://*.tile.openstreetmap.org https://unpkg.com data:; connect-src 'self';">
-  <meta name="referrer" content="no-referrer-when-downgrade">
+  <meta name="description" content="Swift Courier pricing — transparent pricing for secure document delivery, sensitive packages, and business logistics in Kenya.">
+  <meta name="theme-color" content="#2563eb">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' https://*.tile.openstreetmap.org https://unpkg.com data:; connect-src 'self'; font-src 'self' https://fonts.gstatic.com;">
   <title>Pricing | Swift Courier Kenya</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-  <div class="header-brand">
-    <h1>Swift Courier</h1>
-    <span class="header-tagline">Secure Business Delivery</span>
+<header class="site-header" id="siteHeader">
+  <div class="container">
+    <div class="header-inner">
+      <a href="index.html" class="brand">
+        <div class="brand-logo">
+          <div class="brand-icon">📦</div>
+          <div class="brand-text"><h1>Swift Courier</h1><span>Secure Business Delivery</span></div>
+        </div>
+      </a>
+      <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="pricing.html" class="active">Pricing</a>
+        <a href="map.html">Service Map</a>
+        <a href="contact.html">Place Order</a>
+        <a href="admin.html" class="nav-admin">Admin</a>
+      </nav>
+      <div class="header-actions">
+        <button class="btn-icon" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode"><span id="themeIcon">🌙</span></button>
+        <a href="contact.html" class="btn-primary-sm">Place Order</a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+    </div>
   </div>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="services.html">Services</a>
-    <a href="pricing.html" class="active">Pricing</a>
-    <a href="map.html">Service Map</a>
-    <a href="contact.html">Order</a>
-    <a href="admin.html" class="nav-admin">Admin</a>
-    <button id="darkModeToggle" title="Toggle Dark Mode">💡</button>
-  </nav>
 </header>
 
-<section class="hero">
-  <h2>Transparent Pricing</h2>
-  <p>No hidden fees. Pay only for the service, distance, and security level you need.</p>
-</section>
-
-<!-- PRICING TIERS -->
-<section class="content">
-  <h2 style="text-align:center; margin-bottom:10px;">Standard Delivery Pricing</h2>
-  <p style="text-align:center; color:#555; margin-bottom:30px;">Based on distance within Nairobi and major routes</p>
-
-  <div class="pricing-grid">
-    <div class="price-card animate">
-      <div class="price-badge">Basic</div>
-      <h4>Local Delivery</h4>
-      <div class="price">KSh 150</div>
-      <span>Within 3 km radius</span>
-      <ul class="price-features">
-        <li>Standard packaging</li>
-        <li>Basic tracking</li>
-        <li>Same-day delivery</li>
-        <li>WhatsApp updates</li>
-      </ul>
-      <a href="contact.html?type=parcel"><button class="btn-primary">Order Now</button></a>
-    </div>
-
-    <div class="price-card accent animate">
-      <div class="price-badge popular">Most Popular</div>
-      <h4>Standard Delivery</h4>
-      <div class="price">KSh 250</div>
-      <span>Up to 8 km distance</span>
-      <ul class="price-features">
-        <li>Standard packaging</li>
-        <li>Live GPS tracking</li>
-        <li>Same-day delivery</li>
-        <li>Delivery confirmation</li>
-        <li>Photo proof</li>
-      </ul>
-      <a href="contact.html?type=parcel"><button class="btn-primary">Order Now</button></a>
-    </div>
-
-    <div class="price-card animate">
-      <div class="price-badge">Extended</div>
-      <h4>Extended Delivery</h4>
-      <div class="price">KSh 400</div>
-      <span>Up to 15 km / Outskirts</span>
-      <ul class="price-features">
-        <li>All Standard features</li>
-        <li>Priority dispatch</li>
-        <li>Outskirts coverage</li>
-        <li>Thika, Kajiado, Machakos</li>
-      </ul>
-      <a href="contact.html?type=parcel"><button class="btn-primary">Order Now</button></a>
-    </div>
-
-    <div class="price-card animate">
-      <div class="price-badge premium">Premium</div>
-      <h4>Express Rush</h4>
-      <div class="price">KSh 500</div>
-      <span>90-minute guarantee</span>
-      <ul class="price-features">
-        <li>Direct non-stop delivery</li>
-        <li>Priority rider</li>
-        <li>Real-time GPS sharing</li>
-        <li>Instant confirmation</li>
-      </ul>
-      <a href="contact.html?type=express"><button class="btn-primary">Order Express</button></a>
+<section class="hero" style="padding:var(--space-16) 0 var(--space-12);">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge"><span class="badge-dot"></span>Transparent Pricing</div>
+      <h2>No Hidden <span class="highlight">Fees</span></h2>
+      <p>Pay only for the service, distance, and security level you need. Clear, upfront pricing for every delivery.</p>
     </div>
   </div>
 </section>
 
-<!-- BUSINESS & SECURITY PRICING -->
-<section class="security-section">
-  <h2>Business & Security Pricing</h2>
-  <p style="text-align:center; color:#555; margin-bottom:30px;">Specialized pricing for sensitive documents, high-value items, and business accounts</p>
-
-  <div class="pricing-grid business">
-    <div class="price-card business-card animate">
-      <div class="security-icon">📄</div>
-      <h4>Document Delivery</h4>
-      <div class="price">KSh 200</div>
-      <span>Per envelope / pouch</span>
-      <ul class="price-features">
-        <li>Tamper-proof envelope</li>
-        <li>Chain of custody log</li>
-        <li>Signature confirmation</li>
-        <li>Insured up to KSh 10,000</li>
-        <li>Confidential handling</li>
-      </ul>
-      <div class="security-tags">
-        <span class="tag">Legal Papers</span>
-        <span class="tag">Contracts</span>
-        <span class="tag">Financial</span>
-      </div>
-      <a href="contact.html?type=document"><button class="btn-primary">Order Now</button></a>
+<section class="section" style="padding-top:var(--space-12);">
+  <div class="container">
+    <div class="section-header animate">
+      <span class="section-label">Standard Delivery</span>
+      <h2>Standard Delivery Pricing</h2>
+      <p>Based on distance within Nairobi and major routes. All prices in Kenyan Shillings (KSh).</p>
     </div>
-
-    <div class="price-card business-card featured animate">
-      <div class="price-badge secure">HIGH SECURITY</div>
-      <div class="security-icon">🔒</div>
-      <h4>Sensitive Package</h4>
-      <div class="price">KSh 350</div>
-      <span>Base price + KSh 50 insurance</span>
-      <ul class="price-features">
-        <li>Tamper-evident sealing</li>
-        <li>Unique serial tracking</li>
-        <li>Verified rider only</li>
-        <li>Photo at pickup & delivery</li>
-        <li>Insured up to KSh 50,000</li>
-        <li>Recipient ID verification</li>
-      </ul>
-      <div class="security-tags">
-        <span class="tag">Electronics</span>
-        <span class="tag">Jewelry</span>
-        <span class="tag">Pharma</span>
+    <div class="pricing-grid">
+      <div class="price-card animate">
+        <span class="price-badge">Basic</span>
+        <h4>Local Delivery</h4>
+        <div class="price-amount"><span class="currency">KSh</span> 150</div>
+        <div class="price-period">Within 3 km radius</div>
+        <ul class="price-features">
+          <li class="included">Standard packaging</li>
+          <li class="included">Basic tracking</li>
+          <li class="included">Same-day delivery</li>
+          <li class="included">WhatsApp updates</li>
+        </ul>
+        <a href="contact.html?type=parcel" class="btn btn-primary btn-full">Order Now</a>
       </div>
-      <a href="contact.html?type=sensitive"><button class="btn-primary">Order Secure</button></a>
-    </div>
-
-    <div class="price-card business-card animate">
-      <div class="security-icon">🏢</div>
-      <h4>Business Account</h4>
-      <div class="price">Custom</div>
-      <span>Volume-based pricing</span>
-      <ul class="price-features">
-        <li>Dedicated account manager</li>
-        <li>Scheduled daily pickups</li>
-        <li>Consolidated monthly billing</li>
-        <li>10-30% volume discount</li>
-        <li>Priority support</li>
-        <li>API access (coming soon)</li>
-      </ul>
-      <div class="security-tags">
-        <span class="tag">50+ orders/mo</span>
-        <span class="tag">Corporate</span>
+      <div class="price-card featured animate animate-delay-1">
+        <span class="price-badge popular">Most Popular</span>
+        <h4>Standard Delivery</h4>
+        <div class="price-amount"><span class="currency">KSh</span> 250</div>
+        <div class="price-period">Up to 8 km distance</div>
+        <ul class="price-features">
+          <li class="included">Standard packaging</li>
+          <li class="included">Live GPS tracking</li>
+          <li class="included">Same-day delivery</li>
+          <li class="included">Delivery confirmation</li>
+          <li class="included">Photo proof</li>
+        </ul>
+        <a href="contact.html?type=parcel" class="btn btn-primary btn-full">Order Now</a>
       </div>
-      <a href="contact.html?type=business"><button class="btn-primary">Get Quote</button></a>
-    </div>
-  </div>
-</section>
-
-<!-- PRICE CALCULATOR -->
-<section class="content">
-  <div class="calculator-card">
-    <h3>🧮 Quick Price Calculator</h3>
-    <div class="calculator-form">
-      <div class="calc-group">
-        <label>Delivery Type</label>
-        <select id="calcType">
-          <option value="150">Standard Parcel (from KSh 150)</option>
-          <option value="200">Document (from KSh 200)</option>
-          <option value="350">Sensitive Package (from KSh 350)</option>
-          <option value="500">Express Rush (from KSh 500)</option>
-        </select>
+      <div class="price-card animate animate-delay-2">
+        <span class="price-badge">Extended</span>
+        <h4>Extended Delivery</h4>
+        <div class="price-amount"><span class="currency">KSh</span> 400</div>
+        <div class="price-period">Up to 15 km / Outskirts</div>
+        <ul class="price-features">
+          <li class="included">All Standard features</li>
+          <li class="included">Priority dispatch</li>
+          <li class="included">Outskirts coverage</li>
+          <li class="included">Thika, Kajiado, Machakos</li>
+        </ul>
+        <a href="contact.html?type=parcel" class="btn btn-primary btn-full">Order Now</a>
       </div>
-      <div class="calc-group">
-        <label>Distance (km)</label>
-        <input type="range" id="calcDistance" min="1" max="30" value="5" oninput="document.getElementById('distVal').textContent=this.value+' km'">
-        <span id="distVal">5 km</span>
-      </div>
-      <div class="calc-group">
-        <label>Security Level</label>
-        <select id="calcSecurity">
-          <option value="0">Standard (free)</option>
-          <option value="50">High (+ KSh 50)</option>
-          <option value="100">Maximum (+ KSh 100)</option>
-        </select>
-      </div>
-      <div class="calc-result">
-        <div class="calc-total" id="calcTotal">KSh 300</div>
-        <button class="btn-primary" onclick="window.location.href='contact.html'">Place Order</button>
+      <div class="price-card animate animate-delay-3">
+        <span class="price-badge premium">Premium</span>
+        <h4>Express Rush</h4>
+        <div class="price-amount"><span class="currency">KSh</span> 500</div>
+        <div class="price-period">90-minute guarantee</div>
+        <ul class="price-features">
+          <li class="included">Direct non-stop delivery</li>
+          <li class="included">Priority rider</li>
+          <li class="included">Real-time GPS sharing</li>
+          <li class="included">Instant confirmation</li>
+        </ul>
+        <a href="contact.html?type=express" class="btn btn-primary btn-full">Order Express</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section class="how-it-works">
-  <h2>Simple Pricing, No Surprises</h2>
-  <div class="steps-grid">
-    <div class="step-card animate">
-      <div class="step-badge">1</div>
-      <div class="step-icon">📋</div>
-      <h3>Select Service</h3>
-      <p>Choose your delivery type based on what you're sending.</p>
+<section class="section" style="background:linear-gradient(180deg, var(--slate-50), white);">
+  <div class="container">
+    <div class="section-header animate">
+      <span class="section-label">Business & Security</span>
+      <h2>Specialized Pricing</h2>
+      <p>Premium services for businesses that demand the highest security and reliability.</p>
     </div>
-    <div class="step-card animate">
-      <div class="step-badge">2</div>
-      <div class="step-icon">📍</div>
-      <h3>Enter Distance</h3>
-      <p>Price adjusts based on pickup and delivery locations.</p>
-    </div>
-    <div class="step-card animate">
-      <div class="step-badge">3</div>
-      <div class="step-icon">🔐</div>
-      <h3>Add Security</h3>
-      <p>Optional security upgrades for sensitive items.</p>
-    </div>
-    <div class="step-card animate">
-      <div class="step-badge">4</div>
-      <div class="step-icon">✅</div>
-      <h3>Confirm & Pay</h3>
-      <p>Pay on delivery or set up monthly billing.</p>
+    <div class="pricing-grid" style="max-width:960px;">
+      <div class="price-card animate">
+        <span class="price-badge">Document</span>
+        <h4>Document Delivery</h4>
+        <div class="price-amount"><span class="currency">KSh</span> 200</div>
+        <div class="price-period">Per envelope / pouch</div>
+        <ul class="price-features">
+          <li class="included">Tamper-proof envelope</li>
+          <li class="included">Chain of custody log</li>
+          <li class="included">Signature confirmation</li>
+          <li class="included">Insured up to KSh 10,000</li>
+          <li class="included">Confidential handling</li>
+        </ul>
+        <a href="contact.html?type=document" class="btn btn-primary btn-full">Order Now</a>
+      </div>
+      <div class="price-card featured animate animate-delay-1">
+        <span class="price-badge secure">HIGH SECURITY</span>
+        <h4>Sensitive Package</h4>
+        <div class="price-amount"><span class="currency">KSh</span> 350</div>
+        <div class="price-period">Base price + KSh 50 insurance</div>
+        <ul class="price-features">
+          <li class="included">Tamper-evident sealing</li>
+          <li class="included">Unique serial tracking</li>
+          <li class="included">Verified rider only</li>
+          <li class="included">Photo at pickup &amp; delivery</li>
+          <li class="included">Insured up to KSh 50,000</li>
+          <li class="included">Recipient ID verification</li>
+        </ul>
+        <a href="contact.html?type=sensitive" class="btn btn-primary btn-full">Order Secure</a>
+      </div>
+      <div class="price-card animate animate-delay-2">
+        <span class="price-badge">Corporate</span>
+        <h4>Business Account</h4>
+        <div class="price-amount"><span class="currency">Custom</span></div>
+        <div class="price-period">Volume-based pricing</div>
+        <ul class="price-features">
+          <li class="included">Dedicated account manager</li>
+          <li class="included">Scheduled daily pickups</li>
+          <li class="included">Consolidated monthly billing</li>
+          <li class="included">10–30% volume discount</li>
+          <li class="included">Priority support</li>
+          <li class="included">API access (coming soon)</li>
+        </ul>
+        <a href="contact.html?type=business" class="btn btn-primary btn-full">Get Quote</a>
+      </div>
     </div>
   </div>
 </section>
 
-<footer>
-  <div class="footer-grid">
-    <div class="footer-col">
-      <h4>Swift Courier</h4>
-      <p>Secure business delivery across Kenya.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Quick Links</h4>
-      <a href="services.html">Services</a>
-      <a href="map.html">Service Map</a>
-      <a href="contact.html">Place Order</a>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <p>📞 <a href="https://wa.me/254793676054">+254 793 676 054</a></p>
+<section class="section">
+  <div class="container">
+    <div class="calculator-card animate">
+      <h3>🧮 Quick Price Calculator</h3>
+      <div class="calculator-form">
+        <div class="calc-group">
+          <label>Delivery Type</label>
+          <select id="calcType">
+            <option value="150">Standard Parcel (from KSh 150)</option>
+            <option value="200">Document (from KSh 200)</option>
+            <option value="350">Sensitive Package (from KSh 350)</option>
+            <option value="500">Express Rush (from KSh 500)</option>
+          </select>
+        </div>
+        <div class="calc-group">
+          <label>Distance (km)</label>
+          <input type="range" id="calcDistance" min="1" max="30" value="5" oninput="document.getElementById('distVal').textContent=this.value+' km'">
+          <div class="calc-distance-val" id="distVal">5 km</div>
+        </div>
+        <div class="calc-group">
+          <label>Security Level</label>
+          <select id="calcSecurity">
+            <option value="0">Standard (free)</option>
+            <option value="50">High (+ KSh 50)</option>
+            <option value="100">Maximum (+ KSh 100)</option>
+          </select>
+        </div>
+        <div class="calc-result">
+          <div class="calc-total" id="calcTotal">KSh 300</div>
+          <a href="contact.html" class="btn btn-primary btn-lg">Place Order</a>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="footer-bottom">
-    <p>&copy; 2026 Swift Courier Services. All rights reserved.</p>
+</section>
+
+<section class="section how-section">
+  <div class="container">
+    <div class="section-header animate">
+      <span class="section-label">Simple Process</span>
+      <h2>Simple Pricing, No Surprises</h2>
+      <p>Four easy steps from quote to confirmed delivery.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card animate">
+        <div class="step-number">1</div>
+        <div class="step-icon">📋</div>
+        <h3>Select Service</h3>
+        <p>Choose your delivery type based on what you're sending.</p>
+      </div>
+      <div class="step-card animate animate-delay-1">
+        <div class="step-number">2</div>
+        <div class="step-icon">📍</div>
+        <h3>Enter Distance</h3>
+        <p>Price adjusts based on pickup and delivery locations.</p>
+      </div>
+      <div class="step-card animate animate-delay-2">
+        <div class="step-number">3</div>
+        <div class="step-icon">🔐</div>
+        <h3>Add Security</h3>
+        <p>Optional security upgrades for sensitive items.</p>
+      </div>
+      <div class="step-card animate animate-delay-3">
+        <div class="step-number">4</div>
+        <div class="step-icon">✅</div>
+        <h3>Confirm & Pay</h3>
+        <p>Pay on delivery or set up monthly billing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand-logo">
+          <div class="brand-icon">📦</div>
+          <div class="brand-text"><h1>Swift Courier</h1><span>Secure Business Delivery</span></div>
+        </div>
+        <p>Kenya's trusted partner for secure business deliveries.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="services.html">Document Delivery</a>
+        <a href="services.html">Sensitive Packages</a>
+        <a href="services.html">Small Parcels</a>
+        <a href="services.html">Business Logistics</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about.html">About Us</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="map.html">Service Map</a>
+        <a href="admin.html">Admin Dashboard</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="https://wa.me/254793676054">+254 793 676 054</a>
+        <a href="mailto:hello@swiftcourier.co.ke">hello@swiftcourier.co.ke</a>
+        <p style="color:var(--slate-500);font-size:0.875rem;margin-top:8px;">Nairobi, Kenya</p>
+        <p style="color:var(--slate-500);font-size:0.875rem;">Mon – Sat: 7AM – 8PM</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Swift Courier Services. All rights reserved.</p>
+      <div class="footer-social">
+        <a href="https://wa.me/254793676054" title="WhatsApp">💬</a>
+        <a href="#" title="Twitter">𝕏</a>
+        <a href="#" title="LinkedIn">in</a>
+      </div>
+    </div>
   </div>
 </footer>
 
-<a href="https://wa.me/254793676054" class="whatsapp-float" title="Chat on WhatsApp">💬</a>
+<a href="https://wa.me/254793676054" class="whatsapp-float" title="Chat on WhatsApp">💬<span class="tooltip">Chat with us</span></a>
 
 <script src="script.js"></script>
 <script>
-  // Price calculator
   function updateCalc() {
     var base = parseInt(document.getElementById('calcType').value);
     var dist = parseInt(document.getElementById('calcDistance').value);
     var security = parseInt(document.getElementById('calcSecurity').value);
     var distanceCost = dist * 30;
     var total = base + distanceCost + security;
-    document.getElementById('calcTotal').textContent = 'KSh ' + total;
+    document.getElementById('calcTotal').textContent = 'KSh ' + total.toLocaleString();
   }
   document.getElementById('calcType').addEventListener('change', updateCalc);
   document.getElementById('calcDistance').addEventListener('input', updateCalc);
   document.getElementById('calcSecurity').addEventListener('change', updateCalc);
 </script>
 </body>
-</html>
+</html>''')
+
+print("pricing.html written")
