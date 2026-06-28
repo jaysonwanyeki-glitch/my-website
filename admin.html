@@ -3,314 +3,93 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; connect-src 'self'; font-src 'self' https://fonts.gstatic.com;">
   <meta name="referrer" content="no-referrer-when-downgrade">
   <title>Admin Dashboard | Swift Courier</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="admin-body">
 
-<!-- ADMIN AUTH OVERLAY -->
 <div id="adminAuthOverlay" class="admin-auth-overlay">
   <div class="auth-box">
-    <h2>🔐 Admin Access</h2>
+    <div class="auth-icon">🔐</div>
+    <h2>Admin Access</h2>
     <p>Enter your admin password to access the dashboard.</p>
     <input type="password" id="adminPassword" placeholder="Enter password">
-    <button id="adminLoginBtn">Access Dashboard</button>
+    <button id="adminLoginBtn" class="btn btn-primary btn-lg btn-full">Access Dashboard</button>
     <p class="auth-hint">Default: admin2026</p>
   </div>
 </div>
 
-<!-- ADMIN SIDEBAR -->
 <aside class="admin-sidebar" id="adminSidebar">
   <div class="sidebar-brand">
-    <h3>Swift Courier</h3>
-    <span>Admin Panel</span>
+    <div class="brand-icon">📦</div>
+    <div><h3>Swift Courier</h3><span>Admin Panel</span></div>
   </div>
   <nav class="sidebar-nav">
-    <a href="#overview" class="active" data-section="overview">
-      <span class="nav-icon">📊</span> Overview
-    </a>
-    <a href="#orders" data-section="orders">
-      <span class="nav-icon">📦</span> Orders
-    </a>
-    <a href="#analytics" data-section="analytics">
-      <span class="nav-icon">📈</span> Analytics
-    </a>
-    <a href="#riders" data-section="riders">
-      <span class="nav-icon">🚴</span> Riders
-    </a>
-    <a href="#zones" data-section="zones">
-      <span class="nav-icon">🗺️</span> Zone Performance
-    </a>
-    <a href="#insights" data-section="insights">
-      <span class="nav-icon">💡</span> Insights
-    </a>
-    <a href="#settings" data-section="settings">
-      <span class="nav-icon">⚙️</span> Settings
-    </a>
+    <a href="#overview" class="active" data-section="overview"><span class="nav-icon">📊</span><span class="nav-label"> Overview</span></a>
+    <a href="#orders" data-section="orders"><span class="nav-icon">📦</span><span class="nav-label"> Orders</span></a>
+    <a href="#analytics" data-section="analytics"><span class="nav-icon">📈</span><span class="nav-label"> Analytics</span></a>
+    <a href="#riders" data-section="riders"><span class="nav-icon">🚴</span><span class="nav-label"> Riders</span></a>
+    <a href="#zones" data-section="zones"><span class="nav-icon">🗺️</span><span class="nav-label"> Zone Performance</span></a>
+    <a href="#insights" data-section="insights"><span class="nav-icon">💡</span><span class="nav-label"> Insights</span></a>
+    <a href="#settings" data-section="settings"><span class="nav-icon">⚙️</span><span class="nav-label"> Settings</span></a>
   </nav>
   <div class="sidebar-footer">
-    <a href="index.html">← Back to Website</a>
-    <button id="adminLogoutBtn" class="btn-logout">Logout</button>
+    <a href="index.html">← <span>Back to Website</span></a>
+    <button id="adminLogoutBtn" class="btn-logout">🚪 <span>Logout</span></button>
   </div>
 </aside>
 
-<!-- ADMIN MAIN CONTENT -->
 <main class="admin-main">
-  <!-- Top Bar -->
   <div class="admin-topbar">
     <button id="sidebarToggle" class="sidebar-toggle">☰</button>
     <h2 id="pageTitle">Dashboard Overview</h2>
     <div class="topbar-actions">
-      <span id="currentDate"></span>
-      <button id="exportDataBtn" class="btn-export">📥 Export</button>
-      <button id="refreshDataBtn" class="btn-refresh">🔄 Refresh</button>
+      <span id="currentDate" class="topbar-date"></span>
+      <button id="exportDataBtn" class="btn-topbar">📥 Export</button>
+      <button id="refreshDataBtn" class="btn-topbar">🔄 Refresh</button>
     </div>
   </div>
 
-  <!-- OVERVIEW SECTION -->
   <section id="overview" class="admin-section active">
-    <!-- KPI Cards -->
     <div class="kpi-grid">
-      <div class="kpi-card">
-        <div class="kpi-icon">📦</div>
-        <div class="kpi-info">
-          <div class="kpi-value" id="kpiTotalOrders">0</div>
-          <div class="kpi-label">Total Orders</div>
-        </div>
-        <div class="kpi-trend" id="kpiOrderTrend">+0%</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-icon">💰</div>
-        <div class="kpi-info">
-          <div class="kpi-value" id="kpiRevenue">KSh 0</div>
-          <div class="kpi-label">Today's Revenue</div>
-        </div>
-        <div class="kpi-trend" id="kpiRevenueTrend">+0%</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-icon">✅</div>
-        <div class="kpi-info">
-          <div class="kpi-value" id="kpiCompleted">0</div>
-          <div class="kpi-label">Completed Today</div>
-        </div>
-        <div class="kpi-trend success" id="kpiCompletionRate">0%</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-icon">⏳</div>
-        <div class="kpi-info">
-          <div class="kpi-value" id="kpiPending">0</div>
-          <div class="kpi-label">Pending Orders</div>
-        </div>
-        <div class="kpi-trend warning" id="kpiPendingTrend">0</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-icon">🚴</div>
-        <div class="kpi-info">
-          <div class="kpi-value" id="kpiActiveRiders">0</div>
-          <div class="kpi-label">Active Riders</div>
-        </div>
-        <div class="kpi-trend" id="kpiRiderStatus">On Duty</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-icon">⭐</div>
-        <div class="kpi-info">
-          <div class="kpi-value" id="kpiRating">0.0</div>
-          <div class="kpi-label">Avg. Rating</div>
-        </div>
-        <div class="kpi-trend success">★★★★★</div>
-      </div>
+      <div class="kpi-card"><div class="kpi-icon">📦</div><div class="kpi-info"><div class="kpi-value" id="kpiTotalOrders">0</div><div class="kpi-label">Total Orders</div></div><div class="kpi-trend positive" id="kpiOrderTrend">+0%</div></div>
+      <div class="kpi-card"><div class="kpi-icon">💰</div><div class="kpi-info"><div class="kpi-value" id="kpiRevenue">KSh 0</div><div class="kpi-label">Today's Revenue</div></div><div class="kpi-trend positive" id="kpiRevenueTrend">+0%</div></div>
+      <div class="kpi-card"><div class="kpi-icon">✅</div><div class="kpi-info"><div class="kpi-value" id="kpiCompleted">0</div><div class="kpi-label">Completed Today</div></div><div class="kpi-trend neutral" id="kpiCompletionRate">0%</div></div>
+      <div class="kpi-card"><div class="kpi-icon">⏳</div><div class="kpi-info"><div class="kpi-value" id="kpiPending">0</div><div class="kpi-label">Pending Orders</div></div><div class="kpi-trend warning" id="kpiPendingTrend">0</div></div>
+      <div class="kpi-card"><div class="kpi-icon">🚴</div><div class="kpi-info"><div class="kpi-value" id="kpiActiveRiders">0</div><div class="kpi-label">Active Riders</div></div><div class="kpi-trend neutral" id="kpiRiderStatus">On Duty</div></div>
+      <div class="kpi-card"><div class="kpi-icon">⭐</div><div class="kpi-info"><div class="kpi-value" id="kpiRating">0.0</div><div class="kpi-label">Avg. Rating</div></div><div class="kpi-trend positive">★★★★★</div></div>
     </div>
-
-    <!-- Charts Row -->
     <div class="charts-row">
-      <div class="chart-card">
-        <h3>📈 Daily Orders (Last 7 Days)</h3>
-        <canvas id="ordersChart"></canvas>
-      </div>
-      <div class="chart-card">
-        <h3>💰 Revenue Trend (Last 7 Days)</h3>
-        <canvas id="revenueChart"></canvas>
-      </div>
+      <div class="chart-card"><h3>📈 Daily Orders (Last 7 Days)</h3><canvas id="ordersChart"></canvas></div>
+      <div class="chart-card"><h3>💰 Revenue Trend (Last 7 Days)</h3><canvas id="revenueChart"></canvas></div>
     </div>
-
-    <!-- Recent Orders Table -->
     <div class="table-card">
-      <div class="table-header">
-        <h3>📋 Recent Orders</h3>
-        <div class="table-filters">
-          <select id="orderStatusFilter">
-            <option value="all">All Status</option>
-            <option value="Pending">Pending</option>
-            <option value="Assigned">Assigned</option>
-            <option value="In Transit">In Transit</option>
-            <option value="Completed">Completed</option>
-            <option value="Cancelled">Cancelled</option>
-          </select>
-        </div>
-      </div>
-      <div class="table-responsive">
-        <table class="admin-table" id="recentOrdersTable">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Customer</th>
-              <th>Type</th>
-              <th>Pickup</th>
-              <th>Delivery</th>
-              <th>Price</th>
-              <th>Status</th>
-              <th>Rider</th>
-              <th>Time</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="recentOrdersBody"></tbody>
-        </table>
-      </div>
+      <div class="table-header"><h3>📋 Recent Orders</h3><div class="table-filters"><select id="orderStatusFilter"><option value="all">All Status</option><option value="Pending">Pending</option><option value="Assigned">Assigned</option><option value="In Transit">In Transit</option><option value="Completed">Completed</option><option value="Cancelled">Cancelled</option></select></div></div>
+      <div class="table-responsive"><table class="admin-table" id="recentOrdersTable"><thead><tr><th>ID</th><th>Customer</th><th>Type</th><th>Pickup</th><th>Delivery</th><th>Price</th><th>Status</th><th>Rider</th><th>Time</th><th>Actions</th></tr></thead><tbody id="recentOrdersBody"></tbody></table></div>
     </div>
   </section>
 
-  <!-- ORDERS SECTION -->
   <section id="orders" class="admin-section">
-    <div class="section-header">
-      <h2>📦 All Orders</h2>
-      <div class="section-actions">
-        <input type="text" id="orderSearchInput" placeholder="Search orders...">
-        <select id="orderTypeFilter">
-          <option value="all">All Types</option>
-          <option value="document">Document</option>
-          <option value="sensitive">Sensitive</option>
-          <option value="parcel">Parcel</option>
-          <option value="business">Business</option>
-          <option value="express">Express</option>
-        </select>
-        <button id="addOrderBtn" class="btn-primary">+ New Order</button>
-      </div>
-    </div>
-    <div class="table-responsive">
-      <table class="admin-table" id="allOrdersTable">
-        <thead>
-          <tr>
-            <th><input type="checkbox" id="selectAllOrders"></th>
-            <th>ID</th>
-            <th>Customer</th>
-            <th>Phone</th>
-            <th>Type</th>
-            <th>Pickup</th>
-            <th>Delivery</th>
-            <th>Security</th>
-            <th>Price</th>
-            <th>Status</th>
-            <th>Date</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody id="allOrdersBody"></tbody>
-      </table>
-    </div>
+    <div class="section-header-bar"><h2>📦 All Orders</h2><div class="section-actions"><input type="text" id="orderSearchInput" placeholder="Search orders..."><select id="orderTypeFilter"><option value="all">All Types</option><option value="document">Document</option><option value="sensitive">Sensitive</option><option value="parcel">Parcel</option><option value="business">Business</option><option value="express">Express</option></select><button id="addOrderBtn" class="btn btn-primary btn-sm">+ New Order</button></div></div>
+    <div class="table-responsive"><table class="admin-table" id="allOrdersTable"><thead><tr><th><input type="checkbox" id="selectAllOrders"></th><th>ID</th><th>Customer</th><th>Phone</th><th>Type</th><th>Pickup</th><th>Delivery</th><th>Security</th><th>Price</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead><tbody id="allOrdersBody"></tbody></table></div>
     <div class="table-pagination" id="ordersPagination"></div>
   </section>
 
-  <!-- ANALYTICS SECTION -->
   <section id="analytics" class="admin-section">
-    <div class="charts-row">
-      <div class="chart-card wide">
-        <h3>📊 Weekly Performance</h3>
-        <canvas id="weeklyChart"></canvas>
-      </div>
-    </div>
-    <div class="charts-row">
-      <div class="chart-card">
-        <h3>📦 Orders by Type</h3>
-        <canvas id="orderTypeChart"></canvas>
-      </div>
-      <div class="chart-card">
-        <h3>🗺️ Orders by Zone</h3>
-        <canvas id="zoneChart"></canvas>
-      </div>
-    </div>
-    <div class="charts-row">
-      <div class="chart-card">
-        <h3>⏱️ Delivery Time Performance</h3>
-        <canvas id="deliveryTimeChart"></canvas>
-      </div>
-      <div class="chart-card">
-        <h3>⭐ Customer Satisfaction</h3>
-        <canvas id="satisfactionChart"></canvas>
-      </div>
-    </div>
+    <div class="charts-row"><div class="chart-card wide"><h3>📊 Weekly Performance</h3><canvas id="weeklyChart"></canvas></div></div>
+    <div class="charts-row"><div class="chart-card"><h3>📦 Orders by Type</h3><canvas id="orderTypeChart"></canvas></div><div class="chart-card"><h3>🗺️ Orders by Zone</h3><canvas id="zoneChart"></canvas></div></div>
+    <div class="charts-row"><div class="chart-card"><h3>⏱️ Delivery Time Performance</h3><canvas id="deliveryTimeChart"></canvas></div><div class="chart-card"><h3>⭐ Customer Satisfaction</h3><canvas id="satisfactionChart"></canvas></div></div>
   </section>
 
-  <!-- RIDERS SECTION -->
-  <section id="riders" class="admin-section">
-    <div class="section-header">
-      <h2>🚴 Rider Management</h2>
-      <button id="addRiderBtn" class="btn-primary">+ Add Rider</button>
-    </div>
-    <div class="rider-grid" id="riderGrid"></div>
-  </section>
-
-  <!-- ZONES SECTION -->
-  <section id="zones" class="admin-section">
-    <div class="section-header">
-      <h2>🗺️ Zone Performance</h2>
-    </div>
-    <div class="zone-performance-grid" id="zonePerformanceGrid"></div>
-  </section>
-
-  <!-- INSIGHTS SECTION -->
-  <section id="insights" class="admin-section">
-    <div class="section-header">
-      <h2>💡 Business Insights & Recommendations</h2>
-    </div>
-    <div class="insights-grid" id="insightsGrid"></div>
-  </section>
-
-  <!-- SETTINGS SECTION -->
-  <section id="settings" class="admin-section">
-    <div class="section-header">
-      <h2>⚙️ Settings</h2>
-    </div>
-    <div class="settings-grid">
-      <div class="settings-card">
-        <h3>🔐 Security</h3>
-        <label>Admin Password</label>
-        <input type="password" id="settingsPassword" placeholder="Change admin password">
-        <button id="savePasswordBtn" class="btn-primary">Update Password</button>
-      </div>
-      <div class="settings-card">
-        <h3>💰 Pricing</h3>
-        <label>Base Delivery Price (KSh)</label>
-        <input type="number" id="basePrice" value="150">
-        <label>Price Per KM (KSh)</label>
-        <input type="number" id="pricePerKm" value="30">
-        <label>Express Multiplier</label>
-        <input type="number" id="expressMultiplier" value="2" step="0.1">
-        <button id="savePricingBtn" class="btn-primary">Save Pricing</button>
-      </div>
-      <div class="settings-card">
-        <h3>📱 WhatsApp</h3>
-        <label>Business WhatsApp Number</label>
-        <input type="tel" id="whatsappNumber" value="254793676054">
-        <label>Auto-Notify on New Order</label>
-        <select id="autoNotify">
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
-        </select>
-        <button id="saveSettingsBtn" class="btn-primary">Save Settings</button>
-      </div>
-      <div class="settings-card danger">
-        <h3>⚠️ Data Management</h3>
-        <p>Export all orders data as JSON file.</p>
-        <button id="exportAllBtn" class="btn-primary">📥 Export All Data</button>
-        <hr style="margin:15px 0;border-color:#fee2e2;">
-        <p style="color:#dc2626;">Clear all order data. This cannot be undone.</p>
-        <button id="clearAllBtn" class="btn-danger">🗑️ Clear All Data</button>
-      </div>
-    </div>
-  </section>
+  <section id="riders" class="admin-section"><div class="section-header-bar"><h2>🚴 Rider Management</h2><button id="addRiderBtn" class="btn btn-primary btn-sm">+ Add Rider</button></div><div class="rider-grid" id="riderGrid"></div></section>
+  <section id="zones" class="admin-section"><div class="section-header-bar"><h2>🗺️ Zone Performance</h2></div><div class="zone-performance-grid" id="zonePerformanceGrid"></div></section>
+  <section id="insights" class="admin-section"><div class="section-header-bar"><h2>💡 Business Insights</h2></div><div class="insights-grid" id="insightsGrid"></div></section>
+  <section id="settings" class="admin-section"><div class="section-header-bar"><h2>⚙️ Settings</h2></div><div class="settings-grid"><div class="settings-card"><h3>🔐 Security</h3><label>Admin Password</label><input type="password" id="settingsPassword" placeholder="Change admin password"><button id="savePasswordBtn" class="btn btn-primary btn-sm">Update Password</button></div><div class="settings-card"><h3>💰 Pricing</h3><label>Base Delivery Price (KSh)</label><input type="number" id="basePrice" value="150"><label>Price Per KM (KSh)</label><input type="number" id="pricePerKm" value="30"><label>Express Multiplier</label><input type="number" id="expressMultiplier" value="2" step="0.1"><button id="savePricingBtn" class="btn btn-primary btn-sm">Save Pricing</button></div><div class="settings-card"><h3>📱 WhatsApp</h3><label>Business WhatsApp Number</label><input type="tel" id="whatsappNumber" value="254793676054"><label>Auto-Notify on New Order</label><select id="autoNotify"><option value="yes">Yes</option><option value="no">No</option></select><button id="saveSettingsBtn" class="btn btn-primary btn-sm">Save Settings</button></div><div class="settings-card danger"><h3>⚠️ Data Management</h3><p>Export all orders data as JSON file.</p><button id="exportAllBtn" class="btn btn-primary btn-sm">📥 Export All Data</button><hr style="margin:15px 0;border-color:#fee2e2;"><p style="color:var(--danger-600);">Clear all order data. This cannot be undone.</p><button id="clearAllBtn" class="btn-danger">🗑️ Clear All Data</button></div></div></section>
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
