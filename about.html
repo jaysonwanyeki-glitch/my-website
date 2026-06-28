@@ -1,107 +1,156 @@
-<!DOCTYPE html>
+
+# Write about.html
+with open(os.path.join(output_dir, 'about.html'), 'w') as f:
+    f.write('''<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="About Swift Courier - Kenya's trusted secure delivery service for businesses. Learn about our mission, values, and commitment to safe deliveries.">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' https://*.tile.openstreetmap.org https://unpkg.com data:; connect-src 'self';">
-  <meta name="referrer" content="no-referrer-when-downgrade">
+  <meta name="description" content="About Swift Courier — Kenya's trusted secure delivery service. Learn about our mission, values, and commitment to safe business deliveries.">
+  <meta name="theme-color" content="#2563eb">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' https://*.tile.openstreetmap.org https://unpkg.com data:; connect-src 'self'; font-src 'self' https://fonts.gstatic.com;">
   <title>About Us | Swift Courier Kenya</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-  <div class="header-brand">
-    <h1>Swift Courier</h1>
-    <span class="header-tagline">Secure Business Delivery</span>
+<header class="site-header" id="siteHeader">
+  <div class="container">
+    <div class="header-inner">
+      <a href="index.html" class="brand">
+        <div class="brand-logo">
+          <div class="brand-icon">📦</div>
+          <div class="brand-text"><h1>Swift Courier</h1><span>Secure Business Delivery</span></div>
+        </div>
+      </a>
+      <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html" class="active">About</a>
+        <a href="services.html">Services</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="map.html">Service Map</a>
+        <a href="contact.html">Place Order</a>
+        <a href="admin.html" class="nav-admin">Admin</a>
+      </nav>
+      <div class="header-actions">
+        <button class="btn-icon" id="darkModeToggle" title="Toggle dark mode" aria-label="Toggle dark mode"><span id="themeIcon">🌙</span></button>
+        <a href="contact.html" class="btn-primary-sm">Place Order</a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+    </div>
   </div>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html" class="active">About</a>
-    <a href="services.html">Services</a>
-    <a href="pricing.html">Pricing</a>
-    <a href="map.html">Service Map</a>
-    <a href="contact.html">Order</a>
-    <a href="admin.html" class="nav-admin">Admin</a>
-    <button id="darkModeToggle" title="Toggle Dark Mode">💡</button>
-  </nav>
 </header>
 
-<section class="hero">
-  <h2>About Swift Courier</h2>
-  <p>Kenya's trusted partner for secure business deliveries. We specialize in handling sensitive documents and valuable packages with the care and professionalism your business demands.</p>
-</section>
-
-<section class="content">
-  <div class="about-grid">
-    <div class="about-card">
-      <div class="about-icon">🎯</div>
-      <h3>Our Mission</h3>
-      <p>To provide businesses across Kenya with a delivery service they can trust completely — where every package, document, and sensitive item is handled with maximum security and professionalism.</p>
-    </div>
-
-    <div class="about-card">
-      <div class="about-icon">👁️</div>
-      <h3>Our Vision</h3>
-      <p>To become Kenya's most trusted secure delivery network, connecting businesses in every major town with reliable, trackable, and insured delivery services.</p>
-    </div>
-
-    <div class="about-card">
-      <div class="about-icon">💎</div>
-      <h3>Our Values</h3>
-      <p><strong>Security First</strong> — Every item is treated as high-value.<br>
-         <strong>Reliability</strong> — We deliver on our promises, every time.<br>
-         <strong>Transparency</strong> — Full tracking and clear communication.<br>
-         <strong>Professionalism</strong> — Trained riders, verified identities.</p>
+<section class="hero" style="padding:var(--space-16) 0 var(--space-12);">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge"><span class="badge-dot"></span>About Swift Courier</div>
+      <h2>Built for <span class="highlight">Business Trust</span></h2>
+      <p>Kenya's trusted partner for secure business deliveries. We specialize in handling sensitive documents and valuable packages with the care and professionalism your business demands.</p>
     </div>
   </div>
 </section>
 
-<!-- STORY SECTION -->
-<section class="security-section">
-  <div class="story-content">
-    <h2>Why We Started</h2>
-    <p>Swift Courier was born from a simple observation: businesses in Kenya needed a delivery service they could trust with their most sensitive items — legal documents, financial records, proprietary samples, and valuable goods.</p>
-    <p>While general courier services existed, none specialized in the security and chain-of-custody requirements that businesses demand. We built Swift Courier to fill that gap.</p>
-    <p>Today, we serve over 500 business clients across Nairobi and beyond, from law firms and financial institutions to pharmacies and tech companies. Every delivery is a promise we take seriously.</p>
+<section class="section" style="padding-top:var(--space-12);">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-card animate">
+        <div class="about-icon-wrap">🎯</div>
+        <h3>Our Mission</h3>
+        <p>To provide businesses across Kenya with a delivery service they can trust completely — where every package, document, and sensitive item is handled with maximum security and professionalism.</p>
+      </div>
+      <div class="about-card animate animate-delay-1">
+        <div class="about-icon-wrap">👁️</div>
+        <h3>Our Vision</h3>
+        <p>To become Kenya's most trusted secure delivery network, connecting businesses in every major town with reliable, trackable, and insured delivery services.</p>
+      </div>
+      <div class="about-card animate animate-delay-2">
+        <div class="about-icon-wrap">💎</div>
+        <h3>Our Values</h3>
+        <p><strong style="color:var(--slate-900);">Security First</strong> — Every item is treated as high-value.<br>
+           <strong style="color:var(--slate-900);">Reliability</strong> — We deliver on our promises, every time.<br>
+           <strong style="color:var(--slate-900);">Transparency</strong> — Full tracking and clear communication.<br>
+           <strong style="color:var(--slate-900);">Professionalism</strong> — Trained riders, verified identities.</p>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- COVERAGE MAP CTA -->
-<section class="cta-section">
-  <h2>Serving All of Kenya</h2>
-  <p>From Nairobi CBD to the outskirts of Thika, our network covers the routes your business travels daily.</p>
-  <a href="map.html"><button class="btn-secondary">View Our Service Map</button></a>
-</section>
-
-<footer>
-  <div class="footer-grid">
-    <div class="footer-col">
-      <h4>Swift Courier</h4>
-      <p>Secure business delivery across Kenya.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Quick Links</h4>
-      <a href="services.html">Services</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="map.html">Service Map</a>
-      <a href="contact.html">Place Order</a>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <p>📞 <a href="https://wa.me/254793676054">+254 793 676 054</a></p>
-      <p>📍 Nairobi, Kenya</p>
-      <p>🕐 Mon - Sat: 7AM - 8PM</p>
+<section class="story-section">
+  <div class="container">
+    <div class="story-content">
+      <h2>Why We Started</h2>
+      <p>Swift Courier was born from a simple observation: businesses in Kenya needed a delivery service they could trust with their most sensitive items — legal documents, financial records, proprietary samples, and valuable goods.</p>
+      <p>While general courier services existed, none specialized in the security and chain-of-custody requirements that businesses demand. We built Swift Courier to fill that gap.</p>
+      <p>Today, we serve over 500 business clients across Nairobi and beyond, from law firms and financial institutions to pharmacies and tech companies. Every delivery is a promise we take seriously.</p>
     </div>
   </div>
-  <div class="footer-bottom">
-    <p>&copy; 2026 Swift Courier Services. All rights reserved.</p>
+</section>
+
+<section class="section" style="background:linear-gradient(180deg, var(--slate-50), white);">
+  <div class="container">
+    <div class="section-header animate">
+      <span class="section-label">Coverage</span>
+      <h2>Serving All of Kenya</h2>
+      <p>From Nairobi CBD to the outskirts of Thika, our network covers the routes your business travels daily.</p>
+    </div>
+    <div class="text-center">
+      <a href="map.html" class="btn btn-primary btn-lg">View Our Service Map</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand-logo">
+          <div class="brand-icon">📦</div>
+          <div class="brand-text"><h1>Swift Courier</h1><span>Secure Business Delivery</span></div>
+        </div>
+        <p>Kenya's trusted partner for secure business deliveries.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="services.html">Document Delivery</a>
+        <a href="services.html">Sensitive Packages</a>
+        <a href="services.html">Small Parcels</a>
+        <a href="services.html">Business Logistics</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about.html">About Us</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="map.html">Service Map</a>
+        <a href="admin.html">Admin Dashboard</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="https://wa.me/254793676054">+254 793 676 054</a>
+        <a href="mailto:hello@swiftcourier.co.ke">hello@swiftcourier.co.ke</a>
+        <p style="color:var(--slate-500);font-size:0.875rem;margin-top:8px;">Nairobi, Kenya</p>
+        <p style="color:var(--slate-500);font-size:0.875rem;">Mon – Sat: 7AM – 8PM</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Swift Courier Services. All rights reserved.</p>
+      <div class="footer-social">
+        <a href="https://wa.me/254793676054" title="WhatsApp">💬</a>
+        <a href="#" title="Twitter">𝕏</a>
+        <a href="#" title="LinkedIn">in</a>
+      </div>
+    </div>
   </div>
 </footer>
 
-<a href="https://wa.me/254793676054" class="whatsapp-float" title="Chat on WhatsApp">💬</a>
+<a href="https://wa.me/254793676054" class="whatsapp-float" title="Chat on WhatsApp">💬<span class="tooltip">Chat with us</span></a>
 
 <script src="script.js"></script>
 </body>
-</html>
+</html>''')
+
+print("about.html written")
